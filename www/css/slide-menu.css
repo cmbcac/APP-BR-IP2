@@ -1,0 +1,114 @@
+nav#slide-menu {
+  position: fixed;
+  top: 0;
+  left: -100px;
+  bottom: 0;
+  display: block;
+  float: left;
+  width: 100%;
+  max-width: 150px;
+  height: 20%;
+  -moz-transition: all 300ms;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+}
+nav#slide-menu > ul {
+  display: block;
+  margin: 40px;
+  padding: 0;
+  list-style: none;
+  opacity: 0.5;
+  -moz-transition: all 300ms;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+}
+nav#slide-menu > ul li {
+  color: #dfe5eb;
+  padding: 6px 0;
+  cursor: pointer;
+}
+nav#slide-menu > ul li:hover {
+  color: #59e9df;
+}
+nav#slide-menu > ul li:before {
+
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  color: #59e9df;
+  margin-right: 12px;
+  text-align: center;
+  font-variant: normal;
+  font-size: 0.75em;
+  text-transform: none;
+  line-height: 1em;
+}
+
+/*desplaça mapa quan s'ha clicat a la fletxa (menu-active)*/
+body.menu-active nav#slide-menu {
+  left: 0px;
+}
+body.menu-active nav#slide-menu ul {
+  left: 0px;
+  opacity: 1;
+}
+
+/*la fletxa per mostrar el menu*/
+
+div.wrapper div.menu-trigger {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  width: 36px;
+  height: 36px;
+  background: #dfe5eb;
+  cursor: pointer;
+  border-radius: 5px;
+  -moz-transition: all 300ms;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+}
+div.wrapper div.menu-trigger:before {
+  content: '\27A4';
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  color: black;
+  font-style: normal;
+  font-size: 1.2em;
+  font-weight: normal;
+  font-variant: normal;
+  text-align: center;
+  text-transform: none;
+  line-height: 36px;
+}
+div.wrapper div.menu-trigger:hover {
+  background: #556270;
+}
+div.wrapper div.menu-trigger:hover:before {
+  color: #fcfeff;
+}
+
+/*desplaçar el mapa i tot quan el neu està actiu*/
+body.menu-active div.e {
+  left: 140px;
+  border-radius: 7px 0 0 7px;
+}
+body.menu-active div.e {
+  position:fixed;
+  left: 150px;
+}
+
+/*per treure els links i la decoració i tot*/
+a {
+  text-decoration: none;
+}
+a:link, a:visited {
+    color: #FF6B6B;
+}
+a:hover {
+    color: red;
+}

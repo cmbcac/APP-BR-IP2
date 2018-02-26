@@ -13,6 +13,12 @@ body{
 	font-family: 'Scope One', serif;
 }
 
+h1{
+	color: #FF6B6B
+}
+
+
+
 #maintitle{
 	text-align:center;
 	/*white-space: nowrap;*/
@@ -30,10 +36,6 @@ body{
 .one{
 	display: grid;
 	grid-template-columns: 0.05fr 0.95fr;
-}
-.one > a{
-	background-color: black;
-	
 }
 .five{
 	display:grid;
@@ -93,7 +95,7 @@ ul{
 }
 @media screen and (max-width: 568px) and (min-width: 284px) {
 	#maintitle{
-		font-size: 1.2em;
+		font-size: 1.1em;
 	}
 	#radios{
 		font-size: 0.7em;
