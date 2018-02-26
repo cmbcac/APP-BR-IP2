@@ -1,0 +1,164 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+body{
+	min-width: 319px;
+	min-height:319px;
+	overflow:scroll;
+	font-family: 'Scope One', serif;
+}
+
+#maintitle{
+	text-align:center;
+	/*;*/
+}
+
+.wrapper{
+	display:grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 0.1fr 0.9fr;
+	width: 100vw;
+	height: 100vh;
+}
+
+
+
+.five{
+	display:grid;
+	grid-template-rows: 1fr 1fr;
+
+}
+
+.five2x {
+	height:100%;
+	border-radius: 10px;
+}
+
+#fiveinfo1{
+	min-width: 0;
+	max-height: 100%;
+}
+
+.fiveinfocontent{
+	text-align:center;
+	border-radius: 10px;
+	
+	overflow-y:scroll;
+	max-height:206px;
+	min-width: 0px;
+	min-height:0px;
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+}
+.fiveinfo1{
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 3fr 3fr 5fr;
+	max-height: 100%;
+}
+.top{
+	background-color: orange;
+}
+#dadesEntitat{
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+}
+#programacio{
+	display: grid;
+	grid-template-rows:1fr 1fr 1fr;
+}
+#plataformes{
+	display:grid;
+	grid-template-rows: 0.2fr 0.8fr;
+	
+}
+.urls{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 284px){
+	#maintitle{
+		font-size: 1em;
+	}
+}
+@media screen and (max-width: 568px) and (min-width: 284px) {
+	#maintitle{
+		font-size: 1.2em;
+	}
+}
+@media screen and (max-width: 852px) and (min-width: 568px) {
+	#maintitle{
+		font-size: 1.4em;
+	}
+}
+@media screen and (max-width: 1136px) and (min-width: 852px) {
+	#maintitle{
+		font-size: 1.7em;
+	}
+}
+
