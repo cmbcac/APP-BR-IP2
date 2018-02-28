@@ -6,6 +6,13 @@ h1{
 	color: #FF6B6B
 }
 
+body{
+	min-width: 319px;
+	min-height:319px;
+	overflow:scroll;
+	font-family: 'Scope One', serif;
+}
+
 .head{
 	display:grid;
 	grid-template-columns: 0.1fr 0.9fr;
@@ -42,6 +49,10 @@ h1{
 	grid-template-rows: 0.8fr 1.2fr;
 }
 
+#text_form{
+	padding:5px;
+}
+
 .pure-group{
 	border-radius:8px;
 }
@@ -73,6 +84,10 @@ li{
 }
 .el:hover{
 	opacity:0.8;
+}
+
+.nel{
+	white-space: nowrap;
 }
 
 .na{

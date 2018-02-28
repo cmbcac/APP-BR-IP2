@@ -31,11 +31,11 @@ function setstyle(){
     }
 	
     if(window.innerHeight <= 1024){
-        $('h1').css('font-size', '0.9em');
+        /*$('h1').css('font-size', '0.9em');*/
         $('textarea').attr('rows', '7');
     }
     if(window.innerHeight <= 824){
-        $('h1').css('font-size', '0.8em');
+        $('h1').css('font-size', '1em');
         $('textarea').attr('rows', '2');
         $('#textform').css('font-size', '0.7em');
 

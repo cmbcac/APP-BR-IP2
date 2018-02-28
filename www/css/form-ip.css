@@ -13,6 +13,10 @@ body{
 	font-family: 'Scope One', serif;
 }
 
+h1{
+	color:#FF6B6B;
+}
+
 #maintitle{
 	text-align:center;
 	/*;*/
@@ -46,7 +50,7 @@ body{
 }
 
 .top{
-	background-color: orange;
+	background-color: #FF6B6B;
 }
 #dadesEntitat{
 	display: grid;

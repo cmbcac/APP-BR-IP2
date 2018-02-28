@@ -1,7 +1,7 @@
 nav#slide-menu {
   position: fixed;
   top: 0;
-  left: -100px;
+  left: -150px;
   bottom: 0;
   display: block;
   float: left;
@@ -61,8 +61,8 @@ div.wrapper div.menu-trigger {
   position: relative;
   top: 10px;
   left: 10px;
-  width: 36px;
-  height: 36px;
+  width: 18px;
+  height: 18px;
   background: #dfe5eb;
   cursor: pointer;
   border-radius: 5px;
@@ -73,8 +73,8 @@ div.wrapper div.menu-trigger {
 div.wrapper div.menu-trigger:before {
   content: '\27A4';
   display: inline-block;
-  width: 36px;
-  height: 36px;
+  width: 18px;
+  height: 18px;
   color: black;
   font-style: normal;
   font-size: 1.2em;
@@ -82,7 +82,7 @@ div.wrapper div.menu-trigger:before {
   font-variant: normal;
   text-align: center;
   text-transform: none;
-  line-height: 36px;
+  line-height: 18px;
 }
 div.wrapper div.menu-trigger:hover {
   background: #556270;
@@ -93,7 +93,7 @@ div.wrapper div.menu-trigger:hover:before {
 
 /*desplaçar el mapa i tot quan el neu està actiu*/
 body.menu-active div.e {
-  left: 140px;
+  left: 150px;
   border-radius: 7px 0 0 7px;
 }
 body.menu-active div.e {
