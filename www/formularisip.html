@@ -6,9 +6,9 @@
 	<title> Cobertures Catalunya </title>
 	<link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet">
 	<link rel = "stylesheet" href = "css/slide-menu.css">
-	<link rel = "stylesheet" href = "css/form-ip.css">
+	<link rel = "stylesheet" href = "css/form/ip.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script type="text/javascript" src = "js/form-ip.js"></script>
+	<script type="text/javascript" src = "js/form/ip.js"></script>
 </head>
 
 
@@ -30,17 +30,18 @@
 			</div>
 			<div class = "five">
 				<div class="five2x" id = "formzone">
-					<form id = "gform" class="fiveinfo1">
+					<form id = "gform" class="fiveinfo1" action = "https://script.google.com/macros/s/AKfycbyc88e-YVJt9a_kO_zjnI9A95EgoaISTtJNqnEzG1_MfHzsxJD/exec">
 						<div id="dadesEntitat">
 							<div class="top"><h4>Dades entitat</h4></div>
-							<input placeholder="nom entitat" class="nomEntitat">
+							<input name = "Entitat" value ="" required/ placeholder="nom entitat" class="nomEntitat">
+							<input name = "NomComercial" value ="" required/ placeholder="nom comercial">
 							<select>
 								<option>Pública</option>							
 								<option>Privada</option>
 							</select>
 						</div>
-						<div id="programacio">
-							<div class="top"><h4>Programació</h4></div>
+						<div id="ubicacio">
+							<div class="top"><h4>Ubicació</h4></div>
 							<div class = "recipientinputs">
 								<div>
 									<label for="Latitud">Latitud* </label>
@@ -50,6 +51,10 @@
 									<label for="Longitud">Longitud* </label>
 									<input id="Longitud" name="Longitude" value="" required/ placeholder="Click al mapa" data-mini="true" />
 								</div>
+								<div>
+									<label for="Municipi">Municipi* </label>
+									<input id = "Municipi" name = "Municipi" value="" requiered/ placeholder="Municipi">
+								</div>
 							</div>
 						</div>
 						<div id="plataformes">
@@ -57,32 +62,38 @@
 							<div class="urls">
 								<div id ="directe" class = "caixaUrl">
 									Directe
-									<input placeholder="url directe">
+									<input id="Directe URL" name = "Directe URL" placeholder="url directe">
 								</div>
 								<div id = "carta" class = "caixaUrl">
 									Carta
-									<input placeholder="url carta ">
+									<input id="CartaURL" name = "Carta URL"placeholder="url carta ">
 								</div>
 								<div id = "youtube" class = "caixaUrl">
 									Youtube
-									<input placeholder="url youtube">
+									<input id= "YoutubeURL" name = "YoutubeURL" Yplaceholder="url youtube">
 								</div>
 								<div id = "vimeo" class = "caixaUrl">
 									Vimeo
-									<input placeholder="url vimeo">	
+									<input id = "VimeoURL" name = "Vimeo URL" placeholder="url vimeo">	
 								</div>
 								<div id = "xiptv" class = "caixaUrl">
 									XipTV
-									<input placeholder="url xiptv">	
+									<input id = "XiptvURL" name ="Xiptv URL" placeholder="url xiptv">	
 								</div>
 								<div id = "Altra" class = "caixaUrl">
 									altra
-									<input placeholder="url altra plataforma">	
-								</div></div>
+									<input id = "AltraURL" name = "Altra URL" placeholder="url altra plataforma">	
+								</div>
+							</div>
 						</div>
+						<div id = "observacions">
+							<div class="top"><h4>Observacions</h4></div>
+							<textarea id="Observacions" name="Observacions" value=""></textarea>
+						</div>
+						<button class="button-success pure-button button-xlarge" style="background-color:#295E86;color:white">
+						<i class="fa fa-paper-plane"></i>&nbsp;Envia</button>
 					</form>
-					<button class="button-success pure-button button-xlarge" style="background-color:#295E86;color:white">
-						<i class="fa fa-paper-plane"></i>&nbsp;Envia</button>	
+	
 				</div>
 				<div class = "five2x" id = "fivemap">
 				</div>
@@ -116,8 +127,8 @@
 	
 
 	</script>
-	<script type="text/javascript" src="js/slide-menu.js"></script>
-	<script data-cfasync="false" type="text/javascript" src="js/form-submission-handler.js"></script> 
+	<script type="text/javascript" src="js/global/slide-menu.js"></script>
+	<script data-cfasync="false" type="text/javascript" src="js/form/form-submission-handler.js"></script> 
 
 	<!-- google maps -->
     <script async defer
