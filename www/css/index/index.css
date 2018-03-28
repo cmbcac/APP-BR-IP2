@@ -5,84 +5,96 @@ html,body {/*  */
   padding:0px;
   min-width:320px;
   min-height:568px;
+  
+}
+
+body{
+	display:grid;
+	grid-template-rows:1fr 1fr 1fr 0.1fr;
 }
 
 a {
 	text-decoration: none;
 }
 a:link, a:visited {
-    color: #FF6B6B;
+    color: #F2F3F3;
 }
 a:hover {
     color: red;
 
 }
 
-.one-third {/*  */
-  height:33%;
+.one-third {
   margin:0px;
   padding:0px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
 }
 
+h1{
+	height:100%;
+	margin: 0px;
+	padding: 0px;
+}
+/*
 section#top.one-third:hover{
 	background-color:#eef5f5;
 }
-section#mid.one-third:hover{
+section#top.one-third:hover{
 	background-color:#eef5f5;
 }
+*/
+
+h1#f1:hover{
+	background-color:#eef5f5;
+}
+h1#f2:hover{
+	background-color:#eef5f5;
+}
+h1#m1:hover{
+	background-color:#eef5f5;
+}
+h1#m2:hover{
+	background-color:#eef5f5;
+}
+h1#op3:hover{
+	background-color:#eef5f5;
+}
+}
+
 section#bot.one-third:hover{
 	background-color:#eef5f5;
 }
 
-h1#title{/*  */
-  margin:0px;
-  padding-top:40px;
-  padding-bot:40px;
-  position: relative;
-  top: 45%;
-  transform: translateY(-50%);
-  left:15%;
-  width:200px;
-}
-h1#op2, h1#op3{/*  */
-  margin:0px;
-  padding-top:40px;
-  padding-bot:40px;
-  position: relative;
-  top: 45%;
-  transform: translateY(-50%);
-  left:72%;
-  width:200px
-}
+
 #top{  
-  background-color:#FCFEFE;
-  background-image: url("../img/forms.png");
-  /*background-image: url(http://grinbaumorthodontics.com/img/schedule/fill-out-form-icon.png);*/
+  background-color:#EBA8A8;
+  text-align: center;
+  background-image: url("../../img/forms.png");
   background-repeat: no-repeat;
   background-size:40%;
   background-position-y: center;
-  background-position-x: 22%;
+  background-position-x: 50%;
 }
 #mid{
-    background-color: #FCFEFE;
-    height: 34%;
+    background-color: #EE8487;
     text-align: center;
     position: relative;
-    background-image: url("../img/placeholder.png");
+    background-image: url("../../img/placeholder.png");
     background-repeat: no-repeat;
     background-size: 45%;
     background-position-y: center;
-	background-position-x:84%;
+	background-position-x:50%;
 }
 
 #bot{
-  background-color:#FCFEFE;
-  
-  background-image: url("../img/touch-screen.png");
+text-align: center;
+  background-color:#B6A5AC;
+  background-image: url("../../img/touch-screen.png");
   background-repeat: no-repeat;
   background-size:60%;
   background-position-y: center;
-  background-position-x: 3%;
+  background-position-x: 50%;
   
 }
 

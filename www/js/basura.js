@@ -7,9 +7,9 @@ class Detall{
 	}
 
 }
-class Poble{
-	constructor(poble){
-		this.poble = poble;
+class Ajuntament{
+	constructor(ajt){
+		this.nom = ajt;
 		this.latitud;
 		this.longitud;
 		this.tipus;
@@ -22,11 +22,11 @@ class Poble{
 }
 
 class Comarca{
-	constructor(nom){
+	constructor(nom,link){
 		this.nom = nom;
 		this.canals = [];
 		this.idget = "";
-		this.linkpost = "";
+		this.linkpost = link;
 	}
 }
 
@@ -39,11 +39,11 @@ function setValorInProgress(){
 
 
 
-function nomClosestAjuntament(maplatlongs, marker, pobles){
-		/* maplatlongs: obtenir la lat i long de cada poble/resposta del formulari obtinguda*/
+function nomClosestAjuntament(maplatlongs, marker, ajuntaments){
+		/* maplatlongs: obtenir la lat i long de cada ajt/resposta del formulari obtinguda*/
 	/* marker: */
 	var dist = 1000;
-	var nom = "";
+	var nom = "Ajuntament";
 	var it = maplatlongs.entries()
 	var evlat = marker.getPosition().lat();
 	var evlng = marker.getPosition().lng();
@@ -75,17 +75,17 @@ function nomClosestAjuntament(maplatlongs, marker, pobles){
 	return nom;
 }
 
-function closestAjuntament(maplatlongs, marker, pobles){
-	var nom = nomClosestAjuntament(maplatlongs, marker, pobles);
+function closestAjuntament(maplatlongs, marker, ajuntaments){
+	var nom = nomClosestAjuntament(maplatlongs, marker, ajuntaments);
 	
-	var poble;
-	for(var i = 0;  i < pobles.length ; i++){
-		if(pobles[i].poble == nom){
-			poble = pobles[i];
+	var ajt;
+	for(var i = 0;  i < ajuntaments.length ; i++){
+		if(ajuntaments[i].nom == nom){
+			ajt = ajuntaments[i];
 			break;
 		}
 	}
-	return poble;
+	return ajt;
 }
 
 
@@ -216,47 +216,52 @@ function omple_canalscomarca(data){
 }
 
 function ompleArrayComarques(){
-	comarques.push(new Comarca("altaribagorca"));
-	comarques.push(new Comarca("altcamp"));
-	comarques.push(new Comarca("altemporda"));
-	comarques.push(new Comarca("altpanades"));
-	comarques.push(new Comarca("alturgell"));
-	comarques.push(new Comarca("anoia"));
-	comarques.push(new Comarca("aran"));
-	comarques.push(new Comarca("bagues"));
-	comarques.push(new Comarca("baixcamp"));
-	comarques.push(new Comarca("baixebre"));
-	comarques.push(new Comarca("baixemporda"));
-	comarques.push(new Comarca("baixllobregat"));
-	comarques.push(new Comarca("baixpanades"));
-	comarques.push(new Comarca("barcelones"));
-	comarques.push(new Comarca("bergueda"));	
-	comarques.push(new Comarca("cerdanya"));
-	comarques.push(new Comarca("concadebarbera"));
-	comarques.push(new Comarca("garraf"));
-	comarques.push(new Comarca("garrigues"));
-	comarques.push(new Comarca("garrotxa"));
-	comarques.push(new Comarca("girones"));	
-	comarques.push(new Comarca("lanoguera"));
-	comarques.push(new Comarca("maresme"));
-	comarques.push(new Comarca("montsia"));	
-	comarques.push(new Comarca("osona"));
-	comarques.push(new Comarca("pallarsjussa"));	
-	comarques.push(new Comarca("pallarssobira"));	
-	comarques.push(new Comarca("pladestany"));
-	comarques.push(new Comarca("pladurgell"));	
-	comarques.push(new Comarca("priorat"));
-	comarques.push(new Comarca("riberadebre"));
-	comarques.push(new Comarca("ripolles"));
-	comarques.push(new Comarca("segarra"));	
-	comarques.push(new Comarca("segria"));	
-	comarques.push(new Comarca("selva"));
-	comarques.push(new Comarca("solsones"));
-	comarques.push(new Comarca("tarragones"));
-	comarques.push(new Comarca("terraalta"));
-	comarques.push(new Comarca("urgell"));
-	comarques.push(new Comarca("vallesoccidental"));
-	comarques.push(new Comarca("vallesoriental"));
+	comarques.push(new Comarca("altaribagorca", 'AKfycbwfx9G1i4fG7dC389wYASxufv2OSrYfKSHJYkVre_LqQjtAvSEa'));
+	comarques.push(new Comarca("altcamp", 'AKfycbyKtr9H0bGL2u8jDoD83ICdBvO5Iaiu6nIwOClLcQIxWf1goDQ'));
+	comarques.push(new Comarca("altemporda",'AKfycbzO4yjO8owZsB29aATuTl12167v9TczuD0UVgaEQ9FtQGwHV3l8'));
+	comarques.push(new Comarca("altpanades","AKfycbxQHQ91WOjm2hbdKUMCX_6Oin2VaEA9NP5DDyIXvzoAUDPyGfaZ"));
+	comarques.push(new Comarca("alturgell", 'AKfycbzy5-K2D8pjvSPq5oyPke_Ali7tYT2PfE7W8ttpmx1LIQQhieF1'));
+	comarques.push(new Comarca("anoia", 'AKfycbx0LwwGNj1QuYyiRKYIdAWz76r7jqIifJQt0_wtRti9Iip4ZeE'));
+	comarques.push(new Comarca("aran",'AKfycbwbEeIIWmWIaj3y9dcC4hyOwu20NMzM4kb1G8cYZB97vLD-mZc'));
+	comarques.push(new Comarca("bagues", 'AKfycbyQF67i_24d-OU61WmH0NIWIvhsYXxm05enwdM6k73poX6Ly09u'));
+	comarques.push(new Comarca("baixcamp", 'AKfycbxY0LKB6RH422hYjiKd_cacyiIUhH9_r0hbq_kf_JsE98rHPkU'));
+	comarques.push(new Comarca("baixebre", 'AKfycbxHFw-XvodsJrNcvXFLb5n8K-YWiER3I_BCVSbQVr5m3SvfW_Q'));
+	comarques.push(new Comarca("baixemporda",'AKfycbzxzW3BxCDc6V0PNsoarP25DnM4MrL0xEGTXGicKUYNCPzc7rE'));
+	comarques.push(new Comarca("baixllobregat",'AKfycbyNlIB1Ak31Gy1CJkR_y65-7cCnaFQRXsmflDqDfxBRS1OxBDI'));
+	comarques.push(new Comarca("baixpanades",'AKfycbzgF1Un_w3k1YWRZXLoX13XCbqm1N4mPrfF4TQlK2Lhr2UT7v01'));
+	comarques.push(new Comarca("barcelones",'AKfycbzX7PiZ3j9g63uvZ53B5m9fr-YgqHGdlvK-4YN7iw6mx3Ggqtc'));
+	comarques.push(new Comarca("bergueda",'AKfycbyCETWno5_WHZzEf6o47inwFO4peTk2GzzuO5OCDTv-n5dr58E'));	
+	comarques.push(new Comarca("cerdanya",'AKfycbzOt_c9Hx3ufd2-w52OrBu0NKod6QbZ5K4cwMQAtDqR8KW5aW7y'));
+	comarques.push(new Comarca("concadebarbera",'AKfycbyncidALeSZDGKNwzZDYT6OP1GhZdxXJBPGH1ZwuXQQUdH7B1Zv'));
+	comarques.push(new Comarca("garraf",'AKfycbx5nXrR0Ql_1ecEq9rzE-76jCk1LwQq6BGrBBzHCzQZ1ABHM2UB'));
+	comarques.push(new Comarca("garrigues",'AKfycbwIk9HJuZ0-gz3WTtsunmfNbTLOmiHPpbb2jK9qW5RPSuQti5gr'));
+	comarques.push(new Comarca("garrotxa",'AKfycbxbjlB40chexZI7Ycoa58tkPv-OH-ehgPayHkoPKHDBXuJz1mLR'));
+	comarques.push(new Comarca("girones",'AKfycbxI0G3xY_116zmszuVQrxz9j52QpjUingUh1WfAFdz63a-7EKA2'));	
+	comarques.push(new Comarca("lanoguera",'AKfycbx09Fa0o3FksDQZ72ye0mBU2mOYOzrZyTK3ZT-GY88CxlzthVQ'));
+	comarques.push(new Comarca("maresme",'AKfycbx6fY0pxmcTykTU9k7euZKjEfyupF6mxoaXhEtD6CZfCTaVeg4'));
+	comarques.push(new Comarca("montsia",'AKfycbzoNEL3cnEXRc79p2HXU81QRZHx72vwkNxh10OqaetnEUb611Q'));	
+	comarques.push(new Comarca("osona",'AKfycbzQ5jOdjU5wQh07azmmdcnKeV7GZdw6oInClA9Clh3-FTDZ_sQ'));
+	comarques.push(new Comarca("pallarsjussa",'AKfycbyc8K_yhAzXeOGdlpm35PdZ1kG8pvc5A3x1ZdL2WE_ipIwNFmbk'));	
+	comarques.push(new Comarca("pallarssobira",'AKfycbylB__2qS95U0TrTVonZOrrq2IOfVA5Fqg3EiqYjkrgXbKoT_Ok'));	
+	comarques.push(new Comarca("pladestany",'AKfycbyB-UF5cp-6aPQUEZFZEhLmQfytzfb-c1Ww_7Nt7tvK5qYGtelH'));
+	comarques.push(new Comarca("pladurgell",'AKfycbwtWfo548WDJvXq47ywzNL0cS36_yoo6WOo1JH76bZgEYY_yMAi'));	
+	comarques.push(new Comarca("priorat",'AKfycbwGUCZEZWWCkvU9zk349h-fltjPnKO9lq8-SCwUdzruigX6nCB7'));
+	comarques.push(new Comarca("riberadebre",'AKfycbyuZl18_wD6HZhNSQSEIYBPnPTOUHNp2v5KK1f0FHdhpvwkxCBq'));
+	comarques.push(new Comarca("ripolles",'AKfycbywoPN4EkcYWbES7YSOD13P1wD-b_yDNpCbkLQRf3SpVl12MVeA'));
+	comarques.push(new Comarca("segarra",'AKfycbzXNSjOZ78m8XUWFMZ3sYe2NNcYjPMGm7t9LBFe4axaGv5OD-iW'));	
+	comarques.push(new Comarca("segria",'AKfycbxSer1X0sNIokWD1s9CkByEQ3jaqAI5mlU5ftCDkv403-b8Dwk'));	
+	comarques.push(new Comarca("selva",'AKfycby2MKzyQ-BMi03ubI6IL1wNkVvHf9uSzY_IRag5WfBusyPBkM0'));
+	comarques.push(new Comarca("solsones",'AKfycbwmZc2kRXHvBFjqMAl-zh3loKJS_ya5fUbFMPhIU1pH5V8wLZTD'));
+	comarques.push(new Comarca("tarragones",'AKfycbyXcfF8ioD_TdYTfICrlI-R5mEtGEF3TecUq_kFuVH13FesI2o'));
+	comarques.push(new Comarca("terraalta",'AKfycbzCbTsoiEvByJJjp95LP06BLLDETIp42O8F_RQxC_2wbN18-8iq'));
+	comarques.push(new Comarca("urgell",'AKfycbxED94Yw5CGySXkFZkCTLe7T-IHCTaVaw3IcIFeYiRz5NO4nlAm'));
+	comarques.push(new Comarca("vallesoccidental",'AKfycbwm41dkBzL8e2ElRk6SiPe0IMCBTRfiDEHe6GZCp3vCoWcvvVlN'));
+	comarques.push(new Comarca("vallesoriental",'AKfycby9aLuwdrsJWEOX2vY0SfQbkVTlNqQAfMdkbFj6dYwn1jfOzus'));
+	
+	
+	
+	
+	
 }
 
 function ompleDataCanalsComarca(data){
@@ -309,7 +314,7 @@ function handleComplete(name) {
 		console.log(inProgress);
 		markerCluster = new MarkerClusterer(map, array,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-		done = true;
+		ajuntamentsDescarregats = true;
 	}
 };
 
@@ -466,13 +471,21 @@ function controlaInformacio(data,nom){
 		
 		var marker2 = setMarker(comarca, myLatLng, entry, map, array)
 		
-		//pobles
+		//ajuntaments
 		if(comarca != "usuaris"){
-			afegeixPoble(comarca, pobles, entry);
+			afegeixAjuntament(comarca, ajuntaments, entry);
 		}
 		else{
-			afegeixUsuaris(pobles, entry);
+			afegeixUsuaris(ajuntaments, entry);
 		}
+		
+		
+		(function(marker2, ajt){ google.maps.event.addListener(marker2, 'click', function(e){
+			infoWindow.setContent(ajt.nom + " situat a " + ajt.comarca);
+			infoWindow.open(map,marker2);	
+			})
+		})(marker2,ajuntaments[ajuntaments.length-1]);
+		
 		
 	}	
 
@@ -540,52 +553,52 @@ function setIcon(){
 }
 
 
-function afegeixUsuaris(pobles, entry){
-	var p = new Poble(entry['gsx$direcció'].$t);
+function afegeixUsuaris(ajuntaments, entry){
+	var p = new Ajuntament(entry['gsx$direcció'].$t);
 	p.comarca = "usuari";
 	p.descripcio.push(new Detall("Observació", entry['gsx$observacions'].$t));
-	pobles.push(p);
+	ajuntaments.push(p);
 }
 
-function afegeixPoble(comarca, pobles, entry){
-	var p = new Poble(entry['gsx$indiqueuelmunicipidesdonompliuelformulari'].$t);
+function afegeixAjuntament(comarca, ajuntaments, entry){
+	var p = new Ajuntament(entry['gsx$indiqueuelmunicipidesdonompliuelformulari'].$t);
 	p.comarca = comarca;
-	obteContingutSegonsComarca(comarca, pobles, p, entry);
+	obteContingutSegonsComarca(comarca, ajuntaments, p, entry);
 }
 
 
-function obteContingutSegonsComarca(comarca, pobles, poble, entry){
+function obteContingutSegonsComarca(comarca, ajuntaments, ajt, entry){
 
 	//canals = guardaCanals();
 	canalsc = comarques[dict_comarques.get(comarca)].canals;
 	
-	obtenEntrys(pobles,poble,entry, canalsc);
+	obtenEntrys(ajuntaments,ajt,entry, canalsc);
 	
 }
 
-function obtenEntrys(pobles, poble, entry, canalscomarca){
-	poble.idform = entry.id.$t.substring(43,87);
-	poble.latitud = entry.gsx$latitude.$t;
-	poble.longiutd = entry.gsx$longitude.$t;
+function obtenEntrys(ajuntaments, ajt, entry, canalscomarca){
+	ajt.idform = entry.id.$t.substring(43,87);
+	ajt.latitud = entry.gsx$latitude.$t;
+	ajt.longiutd = entry.gsx$longitude.$t;
 	for(i = 0; i < canalscomarca.length; i++){
 		var tosearch = canalscomarca[i].contingut;
-		if(poble.comarca == "bagues" && tosearch == "gsx$radiomarca"){
+		if(ajt.comarca == "bagues" && tosearch == "gsx$radiomarca"){
 			tosearch = "gsx$radioblanca";
 		}
-		if(poble.comarca == "osona" && tosearch == "gsx$televisiódelberguedà"){
+		if(ajt.comarca == "osona" && tosearch == "gsx$televisiódelberguedà"){
 			tosearch = "gsx$canaltaronja";
 		}
 		try{
 			if(tosearch == "" || tosearch == undefined){
-			poble.descripcio.push(new Detall(canalscomarca[i].titol));
+			ajt.descripcio.push(new Detall(canalscomarca[i].titol));
 			}
 			else{
-				poble.descripcio.push(new Detall(canalscomarca[i].titol, entry[tosearch].$t));
+				ajt.descripcio.push(new Detall(canalscomarca[i].titol, entry[tosearch].$t));
 			}
 		}
 		catch(err){
 			
-			console.log(poble);
+			console.log(ajt);
 			console.log(canalscomarca[i])
 			console.log(canals[canalscomarca[i]].titol)
 			console.log(canals[canalscomarca[i]].contingut)
@@ -593,7 +606,7 @@ function obtenEntrys(pobles, poble, entry, canalscomarca){
 		}
 		
 	}
-	pobles.push(poble);
+	ajuntaments.push(ajt);
 }
 
 
@@ -608,7 +621,7 @@ function afegeixBotonsCobertures(n, i){
 	"Altres canals de TV 1", "Altres canals de TV 2", "Altres canals de TV 3", "ALTRES FORMES DE COMUNICACIÓ 1", "ALTRES FORMES DE COMUNICACIÓ 2",
 	"Nom comercial del servei", "ALTRES FORMES DE COMUNICACIÓ", "OBSERVACIÓNS"];
 
-	var t = n.value;
+	var t = n;
 	if(notAppendList.indexOf(t) == -1){
 		$("ul#list1").append('<li class = "nel" id = "'+i+'">'+ t+ '</li>');
 		var startli = '<li class = "iel">';
@@ -624,7 +637,6 @@ function afegeixBotonsCobertures(n, i){
 		var string = startli+nastring+rstring+ostring+gstring+endli;
 		$('ul#list2').append(string);
 	}
-	mapbuttons.set(i.toString(), "");
 	
 }
 
@@ -642,7 +654,7 @@ var infoWindow;					// per crear la finestra d'informació de cada formulari.
 
 
 var canals = [];				// es guardaran totes les emissores que hi han amb el seu nom json, per a poder extreure'n la informació dels formularis. 
-var pobles = [];				// es refereix als formularis omplerts, inicialment només ho havien omplert ajuntaments per tan cada punt era un poble diferent (i uns quants usuaris deixant les seves observacions)
+var ajuntaments = [];				// es refereix als formularis omplerts, inicialment només ho havien omplert ajuntaments per tan cada punt era un ajt diferent (i uns quants usuaris deixant les seves observacions)
 var comarques = [];				// es guardaran les 41 comarques, nom, links i canals/emissores que tenen associades, de ràdio i tv.
 
 var done_emissores = false;
@@ -680,7 +692,7 @@ function initMap() {
 		todo = !todo;
 		try{
 			var catalunya = {lat: 41.385900681193434, lng: 2.1711516380310063};
-				infoWindow = new google.maps.InfoWindow();
+				infoWindow = new google.maps.InfoWindow({pixelOffset: new google.maps.Size(0, 45)});
 				map = new google.maps.Map(document.getElementById('map_form'), {
 				center: catalunya,
 				zoom: 8,
@@ -699,19 +711,36 @@ function initMap() {
 						position: event.latLng,
 						map: map
 					});
+					
+
+					
+					
 					console.log(marker.getPosition().lat());
 					console.log(marker.getPosition().lng());
 					if(ajuntamentsDescarregats){
 
-						var pob = closestAjuntament(maplatlongs, marker, pobles);	//	ajuntament més proper
+						var pob = closestAjuntament(maplatlongs, marker, ajuntaments);	//	ajuntament més proper
 						var com = pob.comarca;										//	nom de la comarca en la que pertany
 						var icom = dict_comarques.get(com);							// 	index de la comarca
-						var numdet = comarques[icom].length;						// 	quants detalls te
+						var numdet = comarques[icom].canals.length;						// 	quants detalls te
+						
+						(function(marker){ google.maps.event.addListener(marker, 'click', function(e){
+								infoWindow.setContent(com);
+								infoWindow.open(map,marker);
+								
+							})
+						})(marker);
+						
+						
+						//modifica link
+						
+						$('#gform').attr('action', 'https://script.google.com/macros/s/'+comarques[icom].linkpost+'/exec');
+						
 						$('ul#list1').children().remove();
 						$('ul#list2').children().remove();
 
-						for(var i = 0; i < numdet.length; i++){
-							var n = comarques[icom].titol;							//nom de cada detall/canal/emissora que te
+						for(var i = 0; i < numdet; i++){
+							var n = comarques[icom].canals[i].titol;							//nom de cada detall/canal/emissora que te
 							afegeixBotonsCobertures(n,i);
 
 							$('.el').css('height', $('.nel').innerHeight());				//tamany de la caixa

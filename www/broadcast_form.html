@@ -14,10 +14,6 @@
 		<!-- js -->
 			<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 			<script type = "text/javascript" src = "js/markerclusterer.js"></script>
-			<!--<script type = "text/javascript" src = "js/comarques.js"></script>--> 		<!-- js/comarques.js -->
-			<!--<script type = "text/javascript" src = "js/canals.js"></script>--> 		<!-- a suprimir -->
-			<!--<script type = "text/javascript" src = "js/form-broadcast.js"></script>-->	<!-- currently js/mapaedicio.js -->
-			<!--<script type = "text/javascript" src = "js/excel.js"></script>-->	<!-- currently js/mapaedicio.js -->
 			<script type = "text/javascript" src = "js/basura.js"></script>
 			<script data-cfasync = "false" type = "text/javascript" src = "text/javascript" src = "js/form-submission-handler.js"></script> <!-- currently va sota gran, despres -->
 	</head>
@@ -29,9 +25,9 @@
 		<nav id = "menu-desplegable">
 			<ul>
 				<li class = "contingut-menu"> <a href = "index.html"> Índex </a> </li>
-				<li class = "contingut-menu"> <a href = "broadcast-map.html"> Plànol Broadcast </a> </li>
-				<li class = "contingut-menu"> <a href = "broadcast-form.html"> Formulari Broadcast </a> </li>
-				<li class = "contingut-menu"> <a href = "contacte.html"> Contacte </a> </li>
+				<li class = "contingut-menu"> <a href = "broadcast_map.html"> Plànol Broadcast </a> </li>
+				<li class = "contingut-menu"> <a href = "broadcast_form.html"> Formulari Broadcast </a> </li>
+				<li class = "contingut-menu"> <a href = "broadcast_contacte.html"> Contacte </a> </li>
 			</ul>
 		</nav>
 
@@ -97,7 +93,7 @@
 									<div id = "observacions">
 										<div class = "top"> Observacions </div>
 										<div class = "recipientinputs">
-											<textarea id = "Observacions (Espai dedicat a incloure aquelles mancances, deficiències en relaicó als mitjans de comunicació que es reben al municipi)" name = "Observacions (Espai dedicat a incloure aquelles mancances, deficiències en relaicó als mitjans de comunicació que es reben al municipi)" value = "" rows = "10" placeholder = "Introdueixi les observacions que trobi adients" required></textarea>
+											<textarea id = "Observacions (Espai dedicat a incloure aquelles mancances, deficiències en relació als mitjans de comunicació que es reben al municipi)" name = "Observacions (Espai dedicat a incloure aquelles mancances, deficiències en relació als mitjans de comunicació que es reben al municipi)" value = "" rows = "10" placeholder = "Introdueixi les observacions que trobi adients"></textarea>
 										</div>
 										
 									</div>
@@ -106,6 +102,7 @@
 								<button style="background-color:#295E86;color:white"> <i></i>&nbsp;Envia</button>
 
 							</div>
+							<div class = "top"> Llistat emissores disponibles a la zona indicada - Indiqui'n el nivell de cobertura </div>
 							<div id = "llistat"> <!-- id = "list" -->
 								<div id = "noms"> <ul id = "list1"> </ul> </div>
 								<div id = "valors"> <ul id = "list2"> </ul> </div>

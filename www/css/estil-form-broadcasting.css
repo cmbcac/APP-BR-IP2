@@ -12,15 +12,28 @@ body{
 	font-family: 'Scope One', serif;
 }
 
+
+/* titol */
+h1{
+	color:#FF6B6B;
+}
+
+#titol-principal{
+	text-align:center;
+}
+
 /*antic wrapcontent*/
 
 .gran{
 	width: 100%;
 }
+/* mapa */
 
 #map_form{
 	min-height: 150px;
 }
+
+/* canals/emissores dividit en dos columnes, */
 
 #llistat{
 	max-height: 300px;
@@ -53,4 +66,7 @@ body{
 
 #list1{
 	white-space: nowrap;
+}
+textarea{
+	width: 100%;
 }
