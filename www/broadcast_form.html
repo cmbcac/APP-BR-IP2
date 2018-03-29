@@ -7,17 +7,18 @@
 
 		<!-- css -->
 			<link rel = "stylesheet" href = "css/menu-desplegable.css">
-			<link rel = "stylesheet" href = "css/buttons.css">	 <!-- css/selector.css -->
-			<link rel = "stylesheet" href = "css/broadcastform.css"> <!-- css/form-body.css -->
+			<link rel = "stylesheet" href = "css/buttons.css">
+			<link rel = "stylesheet" href = "css/broadcastform.css"> 
 
 		<!-- font -->
 			<link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet">
 
 		<!-- js -->
 			<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-			<script type = "text/javascript" src = "js/markerclusterer.js"></script>
-			<script type = "text/javascript" src = "js/bf/broadcastform.js"></script>
+
 	</head>
+	
+	
 
 	<body>
 
@@ -26,8 +27,9 @@
 		<nav id = "menu-desplegable">
 			<ul>
 				<li class = "contingut-menu"> <a href = "index.html"> Índex </a> </li>
+				<li class = "contingut-menu"> <a href = "broadcast_form.html"> Formulari Broadcast </a> 
 				<li class = "contingut-menu"> <a href = "broadcast_map.html"> Plànol Broadcast </a> </li>
-				<li class = "contingut-menu"> <a href = "broadcast_form.html"> Formulari Broadcast </a> </li>
+				</li>
 				<li class = "contingut-menu"> <a href = "broadcast_contacte.html"> Contacte </a> </li>
 			</ul>
 		</nav>
@@ -52,7 +54,7 @@
 
 					<div class = "text"> <!-- es simbolic, per a no veure form i div, sino div i div -->
 
-						<form id = "gform" method = "POST" class = "pure-form pure-form-stacked" > <!-- el action es definira via jquery segons l'ajuntament mes proxim -->
+						<form id = "gform" method = "POST" class = "pure-form pure-form-stacked" > <!-- el action es definira via jquery segons l'ajuntament mes proxim -->						
 							<div id = "dades"> 	<!-- id = "form" -->
 								<div id = "embolcall-text-dades">
 									<div id = "dadespersonals">
@@ -94,7 +96,7 @@
 									<div id = "observacions">
 										<div class = "top"> Observacions </div>
 										<div class = "recipientinputs">
-											<textarea id = "Observacions (Espai dedicat a incloure aquelles mancances, deficiències en relació als mitjans de comunicació que es reben al municipi)" name = "Observacions (Espai dedicat a incloure aquelles mancances, deficiències en relació als mitjans de comunicació que es reben al municipi)" value = "" rows = "10" placeholder = "Introdueixi les observacions que trobi adients"></textarea>
+											<textarea id = "Observacions (Espai dedicat a incloure aquelles mancances, deficiències en relació als mitjans de comunicació que es reben al municipi)" name = "Observacions (Espai dedicat a incloure aquelles mancances, deficiències en relació als mitjans de comunicació que es reben al municipi)" value = "" placeholder = "Introdueixi les observacions que trobi adients"></textarea>
 										</div>
 										
 									</div>
@@ -103,7 +105,7 @@
 								<button style="background-color:#295E86;color:white"> <i></i>&nbsp;Envia</button>
 
 							</div>
-							<div class = "top"> Llistat emissores disponibles a la zona indicada - Indiqui'n el nivell de cobertura </div>
+							<div id = "titolComarca"class = "top"> Emissores disponibles a: <strong>*Premi sobre una regió del mapa*</strong></div>
 							<div id = "llistat"> <!-- id = "list" -->
 								<div id = "noms"> <ul id = "list1"> </ul> </div>
 								<div id = "valors"> <ul id = "list2"> </ul> </div>
@@ -113,10 +115,15 @@
 						</form>
 
 					</div>
+						<div style="display:none;" id="thankyou_message">
+						<h2 style="color:green">Les teves dades s'han transmès correctament! Moltes gràcies! </h2>
+						<img src="img/CAC.png" align="middle" style="width:20%;display:block;margin-left: auto;margin-right: auto">
+					</div>
 					<div class = "mapa" id = "map_form"></div>
 
 
 				</div>
+				<div id = "progressbar"></div>
 
 
 
@@ -131,7 +138,12 @@
 		<!-- + JS -->
 
 		<!-- necessari pel phonegap -->
-		<script type = "text/javascript" src = "cordova.js"></script>		
+		<script type = "text/javascript" src = "cordova.js"></script>
+			
+			<!-- otras movidas -->
+			<script type = "text/javascript" src = "js/markerclusterer.js"></script>
+			<script type = "text/javascript" src = "js/progressbar.js"></script>
+			<script type = "text/javascript" src = "js/bf/broadcastform.js"></script>		
 		
 		<!-- google maps-->
 
@@ -139,6 +151,8 @@
 
 		<!-- estil -->
 		<script type = "text/javascript" src = "js/menu-desplegable.js"></script>
+		<!-- formulari -->
+			<script data-cfasync="false" type="text/javascript" src="js/form-submission-handler.js"></script> 
 
 
 	</body>

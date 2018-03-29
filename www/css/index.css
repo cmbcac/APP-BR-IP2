@@ -11,6 +11,7 @@ html,body {/*  */
 body{
 	display:grid;
 	grid-template-rows:1fr 1fr 1fr 0.1fr;
+	font-family: 'Scope One', serif;
 }
 
 a {
@@ -21,9 +22,15 @@ a:link, a:visited {
 }
 a:hover {
     color: red;
-
 }
 
+a#cont:link, a#cont:visited {
+  
+  -webkit-text-fill-color: #F2F3F3; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 0.01px;
+  -webkit-text-stroke-color: black;
+
+}
 .one-third {
   margin:0px;
   padding:0px;
@@ -35,15 +42,11 @@ h1{
 	height:100%;
 	margin: 0px;
 	padding: 0px;
+	display: flex;
+    align-items: center;
+    justify-content: center
+
 }
-/*
-section#top.one-third:hover{
-	background-color:#eef5f5;
-}
-section#top.one-third:hover{
-	background-color:#eef5f5;
-}
-*/
 
 h1#f1:hover{
 	background-color:#eef5f5;
@@ -70,7 +73,7 @@ section#bot.one-third:hover{
 #top{  
   background-color:#EBA8A8;
   text-align: center;
-  background-image: url("../../img/forms.png");
+  background-image: url("../img/forms.png");
   background-repeat: no-repeat;
   background-size:40%;
   background-position-y: center;
@@ -80,7 +83,7 @@ section#bot.one-third:hover{
     background-color: #EE8487;
     text-align: center;
     position: relative;
-    background-image: url("../../img/placeholder.png");
+    background-image: url("../img/placeholder.png");
     background-repeat: no-repeat;
     background-size: 45%;
     background-position-y: center;
@@ -88,16 +91,15 @@ section#bot.one-third:hover{
 }
 
 #bot{
-text-align: center;
+  text-align: center;
   background-color:#B6A5AC;
-  background-image: url("../../img/touch-screen.png");
+  background-image: url("../img/touch-screen.png");
   background-repeat: no-repeat;
   background-size:60%;
   background-position-y: center;
   background-position-x: 50%;
-  
 }
-
+/*
 @media screen and (max-width:319px){
 	h1#op2, h1#op3{
 		left:57%;
@@ -111,7 +113,7 @@ text-align: center;
 
 }
 
-@media screen and (min-width:320px) and (max-width:469px){/*  */
+@media screen and (min-width:320px) and (max-width:469px){
 	h1#op2, h1#op3{
 		left:60%;
 	}
@@ -131,7 +133,7 @@ text-align: center;
 	
 }
 
-@media screen and (min-width: 620px) and (max-width:830px){/*  */
+@media screen and (min-width: 620px) and (max-width:830px){
 	h1#op2, h1#op3{
 		left:65%;
 	}
@@ -140,9 +142,7 @@ text-align: center;
 	}
 }
 
-
-
-
+  */
 
 
 

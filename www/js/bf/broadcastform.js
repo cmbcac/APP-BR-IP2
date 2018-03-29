@@ -43,7 +43,7 @@ function nomClosestAjuntament(maplatlongs, marker, ajuntaments){
 		/* maplatlongs: obtenir la lat i long de cada ajt/resposta del formulari obtinguda*/
 	/* marker: */
 	var dist = 1000;
-	var nom = "Ajuntament";
+	var nom = "";
 	var it = maplatlongs.entries()
 	var evlat = marker.getPosition().lat();
 	var evlng = marker.getPosition().lng();
@@ -65,7 +65,7 @@ function nomClosestAjuntament(maplatlongs, marker, ajuntaments){
 			var difb = loclng-evlng;
 			var locdist = Math.sqrt(Math.pow(difa,2) + Math.pow(difb, 2));
 
-			if(locdist < dist && (nom.includes("Ajuntament"))){
+			if(locdist < dist ){
 				dist = locdist;
 				nom = locname;
 			}
@@ -270,6 +270,9 @@ function ompleDataCanalsComarca(data){
 
 
 function executaAJAX3(id, todo, string){
+	/*id: id del document que llegeix*/
+	/*todo: funcio a fer*/
+	/*string: per identificar que esta fent*/
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function() {
@@ -277,10 +280,13 @@ function executaAJAX3(id, todo, string){
 
             if (xmlhttp.status == 200) {
 				todo(xmlhttp.responseText);
+
+				/*en el primer executa ajax s'obte els canals*/
 				if(string == "canals"){
 			   		done_emissores = true;
 			   		executaAJAX3(id_comarquescanals, omple_canalscomarca, "canalscomarca");
 			   	}
+			   	/*en el segon s'obtenen quins canals te cada comarca, sense el primer no es fa el segon*/
 			   	if( string == "canalscomarca"){
 			   		done_cc = true;
 			   		cargaDatosSegonsID(map);
@@ -309,14 +315,37 @@ function handleBefore() {
 
 //es diu que hi ha un proces menys i si no n'hi ha cap s'executa el clusteritzador
 function handleComplete(name) {
-	if (!--inProgress) {
+	--inProgress;
+	var valor = (1-(inProgress/setValorInProgress()));
+	bar.animate(valor);
+
+	if (!inProgress) {
 		// do what's in here when all requests have completed.
 		console.log(inProgress);
 		markerCluster = new MarkerClusterer(map, array,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' , ignoreHidden:true});
+		markerCluster.clearMarkers();
 		ajuntamentsDescarregats = true;
 	}
 };
+
+function updateMarkersICluster(activa){
+	if(activa){
+		if(markerCluster.markers_.length == 0){
+			for(var i = 0; i < array.length; i++){array[i].setMap(map);}
+			markerCluster.addMarkers(array)
+		}
+		else{
+			markerCluster.repaint()
+		}
+
+	}
+	else{
+		for(var i = 0; i < array.length; i++){array[i].setMap(null);}
+		markerCluster.clearMarkers();
+	}
+
+}
 
 
 function cargaDatosSegonsID(map){
@@ -525,8 +554,8 @@ function setMarker(comarca, myLatLng, entry, map, array){
 	if(comarca !="usuaris" && comarca != ""){
 		var marker = new google.maps.Marker({
 			position: myLatLng,
-			title: entry['gsx$indiqueuelmunicipidesdonompliuelformulari'].$t,
-			map: map
+			title: entry['gsx$indiqueuelmunicipidesdonompliuelformulari'].$t//,
+			//map: map
 		});
 	}
 	else{
@@ -535,11 +564,12 @@ function setMarker(comarca, myLatLng, entry, map, array){
 		var marker = new google.maps.Marker({
 			position: myLatLng,
 			title: entry[title].$t,
-			icon: im,
-			map: map
+			icon: im//,
+			//map: map
 		});
 	}
-	marker.setMap(map);
+	//marker.setMap(map);
+	marker.setMap(null);
 	array.push(marker);
 	return marker;
 }
@@ -581,7 +611,10 @@ function obtenEntrys(ajuntaments, ajt, entry, canalscomarca){
 	ajt.latitud = entry.gsx$latitude.$t;
 	ajt.longiutd = entry.gsx$longitude.$t;
 	for(i = 0; i < canalscomarca.length; i++){
-		var tosearch = canalscomarca[i].contingut;
+		var tosearch = "";
+		if(canalscomarca[i] != undefined)
+			tosearch = canalscomarca[i].contingut;	
+			
 		if(ajt.comarca == "bagues" && tosearch == "gsx$radiomarca"){
 			tosearch = "gsx$radioblanca";
 		}
@@ -590,7 +623,8 @@ function obtenEntrys(ajuntaments, ajt, entry, canalscomarca){
 		}
 		try{
 			if(tosearch == "" || tosearch == undefined){
-			ajt.descripcio.push(new Detall(canalscomarca[i].titol));
+				if(canalscomarca[i]!=undefined) 
+					ajt.descripcio.push(new Detall(canalscomarca[i].titol));
 			}
 			else{
 				ajt.descripcio.push(new Detall(canalscomarca[i].titol, entry[tosearch].$t));
@@ -599,9 +633,10 @@ function obtenEntrys(ajuntaments, ajt, entry, canalscomarca){
 		catch(err){
 			
 			console.log(ajt);
+			console.log(i + "  " + canalscomarca.length);
 			console.log(canalscomarca[i])
-			console.log(canals[canalscomarca[i]].titol)
-			console.log(canals[canalscomarca[i]].contingut)
+			console.log(canalscomarca[i].titol)
+			console.log(canalscomarca[i].contingut)
 			console.log(entry);
 		}
 		
@@ -666,7 +701,7 @@ var id_comarquescanals = '1p_2jhSOWnop5TkdFxmNhzMk16uWbkv22CggAvUg0YyM';
 
 
 
-var markclusterer;	
+var markerCluster;	
 
 var maplatlongs = new Map();	// per a que no hi hagin dos marcadors en la mateixa ubicació. 
 
@@ -687,6 +722,15 @@ var ajuntament;
 var dict_comarques = new Map();	//hi guarda de cada comarca l'index. 
 ompleDiccionariComarques();
 
+var bar = new ProgressBar.Line(progressbar, {
+  strokeWidth: 4,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: '#FFEA82',
+  trailColor: '#eee',
+  trailWidth: 1,
+  svgStyle: {width: '100%', height: '100%'}
+});
 
 function initMap() {
 		todo = !todo;
@@ -724,6 +768,10 @@ function initMap() {
 						var icom = dict_comarques.get(com);							// 	index de la comarca
 						var numdet = comarques[icom].canals.length;						// 	quants detalls te
 						
+						
+						$("#titolComarca")[0].innerHTML = "Emissores disponibles a: <strong>" + com +'</strong>';
+						
+						
 						(function(marker){ google.maps.event.addListener(marker, 'click', function(e){
 								infoWindow.setContent(com);
 								infoWindow.open(map,marker);
@@ -738,25 +786,39 @@ function initMap() {
 						
 						$('ul#list1').children().remove();
 						$('ul#list2').children().remove();
-
+						
 						for(var i = 0; i < numdet; i++){
-							var n = comarques[icom].canals[i].titol;							//nom de cada detall/canal/emissora que te
+							var n ;
+							if(comarques[icom].canals[i] != undefined){
+								n = comarques[icom].canals[i].titol;							//nom de cada detall/canal/emissora que te
+							}
+							else{
+								break;
+							}
+							
 							afegeixBotonsCobertures(n,i);
-
+							
+							
 							$('.el').css('height', $('.nel').innerHeight());				//tamany de la caixa
-
-							$("[class*=example-class").hover(function(){
-								var c = this.className.match(/(\d+)-example-class/)[1];		//in hover
-								$('#'+c).css('background-color', '#fcf4eb');
-							}, function(){
-								var c = this.className.match(/(\d+)-example-class/)[1];		//out hover
-								$('#'+c).css('background-color', '#ffffff');
-							});
-
+	
+							try{
+								$("[class*=example-class]").hover(function(){
+									var c = this.className.match(/(\d+)-example-class/)[1];		//in hover
+									$('#'+c).css('background-color', '#fcf4eb');
+								}, function(){
+									var c = this.className.match(/(\d+)-example-class/)[1];		//out hover
+									$('#'+c).css('background-color', '#ffffff');
+								});
+							}
+							catch(e){
+								alert(e);
+							}
+							
 							$('.el').on('click', function(event){
 								event.stopImmediatePropagation();
 								var c = this.className.match(/(\d+)-example-class/)[1];
 							});
+
 						}
 					}
 				document.getElementById('Latitud').value = (marker.getPosition().lat());

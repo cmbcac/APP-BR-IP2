@@ -18,8 +18,6 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	
-	<script type="text/javascript" src="js/markerclusterer.js"></script>
-	<script type="text/javascript" src="js/bm/broadcastmape.js"></script>
 </head>
 
 
@@ -29,8 +27,8 @@
 	<nav id="menu-desplegable">
 	  <ul>
 		<li class="contingut-menu"><a href = "index.html">Índex</a></li>
-		<li class="contingut-menu"><a href = "broadcast_map.html">Plànols Broadcast</a></li>
 		<li class = "contingut-menu"><a href = "broadcast_form.html">Formulari Broadcast</a></li>
+		<li class="contingut-menu"><a href = "broadcast_map.html">Plànols Broadcast</a></li>
 		<li class = "contingut-menu"> <a href = "broadcast_contacte.html">Contacte</a></li>
 	  </ul>
 	</nav>
@@ -39,7 +37,7 @@
 
 	<div class = "cos">
 		<div class="embolcall">
-			<div class = "peitot">
+			<div class = "petit">
 				<div class ="polsador-menu"></div>
 				<h1 id = "titol-principal"><strong>Cobertures Ràdios i Televisions de Catalunya</strong></h1>
 			</div>
@@ -70,10 +68,21 @@
 						</div>
 				</div>
 			</div>
+
+			<div id = "progressbar" style = "height: 12px"></div>
 		</div>
 	</div>
 	
 	
+
+	<!-- js -->
+
+
+	<script type = "text/javascript" src = "js/progressbar.js"></script>
+	<script type="text/javascript" src="js/markerclusterer.js"></script>
+	<script type="text/javascript" src="js/bm/broadcastmap.js"></script>
+	<script type="text/javascript" src="js/bm/broadcastmap2.js"></script>
+
 	<!-- google maps -->
 
     <script async defer
@@ -83,7 +92,22 @@
 	<!-- estil -->
 
 	<script type="text/javascript" src="js/menu-desplegable.js"></script>
-	<script type="text/javascript" src="js/mapes/css-tvm.js"></script>
+	
+	<script>
+	function setstyle(){
+		$('.fiveinfocontent').css('max-height', $('.five').innerHeight()*0.33);
+	}
+
+	$(document).ready(setstyle);
+	$(window).resize(setstyle);
+
+	
+	
+	</script>
+
+
+
+	
 </body>
 	
 </html>

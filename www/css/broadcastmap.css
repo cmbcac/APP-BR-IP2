@@ -19,7 +19,7 @@ h1{
 
 #titol-principal{
 	text-align:center;
-	/*white-space: nowrap;*/
+	
 }
 
 .embolcall{
@@ -86,13 +86,20 @@ ul{
 	grid-template-columns: 1fr;
 }
 
+#progressbar {
+  margin: 0px;
+  width: 100%;
+  height: 8px;
+}
+
+
 @media screen and (max-width: 284px){
-	#maintitle{
+	#titol-principal{
 		font-size: 1em;
 	}
 }
 @media screen and (max-width: 568px) and (min-width: 284px) {
-	#maintitle{
+	#titol-principal{
 		font-size: 1.1em;
 	}
 	#radios{
@@ -107,12 +114,12 @@ ul{
 
 }
 @media screen and (max-width: 852px) and (min-width: 568px) {
-	#maintitle{
+	#titol-principal{
 		font-size: 1.4em;
 	}
 }
 @media screen and (max-width: 1136px) and (min-width: 852px) {
-	#maintitle{
+	#titol-principal{
 		font-size: 1.7em;
 	}
 }

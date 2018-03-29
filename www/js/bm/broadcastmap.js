@@ -667,11 +667,6 @@ function setIcon(){
 }
 
 
-
-
-
-
-
 function afegeixUsuaris(pobles, entry){
 	var p = new Poble(entry['gsx$direcció'].$t);
 	p.comarca = "usuari";
@@ -1058,6 +1053,15 @@ var inProgress;
 
 inProgress = setValorInProgress();
 
+var bar = new ProgressBar.Line(progressbar, {
+  strokeWidth: 4,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: '#FFEA82',
+  trailColor: '#eee',
+  trailWidth: 1,
+  svgStyle: {width: '100%', height: '100%'}
+});
 
 
 
@@ -1093,7 +1097,11 @@ function handleBefore() {
 
 //es diu que hi ha un proces menys i si no n'hi ha cap s'executa el clusteritzador
 function handleComplete(name) {
-	if (!--inProgress) {
+	--inProgress;
+	var valor = (1-(inProgress/setValorInProgress()));
+	bar.animate(valor);
+
+	if (!inProgress) {
 		// do what's in here when all requests have completed.
 		console.log(inProgress);
 		markerCluster = new MarkerClusterer(map, array,
@@ -1525,6 +1533,8 @@ window.addEventListener('devicelight', (e) => {
 window.addEventListener('online',  updateIndicator);
 window.addEventListener('offline', updateIndicator);
 updateIndicator();
+
+
 
 
 

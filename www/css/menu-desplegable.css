@@ -23,7 +23,6 @@ nav#menu-desplegable > ul {
   transition: all 300ms;
 }
 nav#menu-desplegable > ul li {
-  color: #dfe5eb;
   padding: 6px 0;
   cursor: pointer;
 }
