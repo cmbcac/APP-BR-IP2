@@ -3,34 +3,45 @@
 <head>
 	<meta charset='utf-8' />
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=12.0, user-scalable=yes">
-	<title> Cobertures Catalunya </title>
+	<title>Plànol Cobertures Broadcasting Catalunya </title>
+	
+
+	<!-- css -->
+
+	<link rel = "stylesheet" href = "css/menu-desplegable.css">
+	<link rel = "stylesheet" href = "css/broadcastmap.css">
+
+	<!-- fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet">
-	<link rel = "stylesheet" href = "css/slide-menu.css">
-	<link rel = "stylesheet" href = "css/mapes/tvfm.css">
+	
+	<!-- js -->
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script type="text/javascript" src="js/mapes/css-tvm.js"></script>
-	<script type="text/javascript" src="js/global/markerclusterer.js"></script>
-	<script type="text/javascript" src="js/canals.js"></script>
-	<script type="text/javascript" src="js/mapes/tvfm.js"></script>
-	<script type="text/javascript" src="js/mapes/global.js"></script>
+	
+	<script type="text/javascript" src="js/markerclusterer.js"></script>
+	<script type="text/javascript" src="js/bm/broadcastmape.js"></script>
 </head>
 
 
 <body>
 	
-	<nav id="slide-menu">
+	<!-- MENU -->
+	<nav id="menu-desplegable">
 	  <ul>
-		<li class="index"><a href = "index.html">Índex</a></li>
-		<li class="mapes"><a href = "broadcast_map.html">Plànols Broadcast</a></li>
-		<li class = "formularis"><a href = "broadcast_form.html">Formulari Broadcast</a></li>
-		<li class = "contacte"> <a href = "broadcast_contacte.html">Contacte</a></li>
+		<li class="contingut-menu"><a href = "index.html">Índex</a></li>
+		<li class="contingut-menu"><a href = "broadcast_map.html">Plànols Broadcast</a></li>
+		<li class = "contingut-menu"><a href = "broadcast_form.html">Formulari Broadcast</a></li>
+		<li class = "contingut-menu"> <a href = "broadcast_contacte.html">Contacte</a></li>
 	  </ul>
 	</nav>
-	<div class = "e">
-		<div class="wrapper">
-			<div class = "one">
-				<div class ="menu-trigger"></div>
-				<h1 id = "maintitle"><strong>Cobertures Ràdios i Televisions de Catalunya</strong></h1>
+
+	<!-- COS -->
+
+	<div class = "cos">
+		<div class="embolcall">
+			<div class = "peitot">
+				<div class ="polsador-menu"></div>
+				<h1 id = "titol-principal"><strong>Cobertures Ràdios i Televisions de Catalunya</strong></h1>
 			</div>
 			<div class = "five">
 				<div class = "five2x" id = "fivemap">
@@ -63,15 +74,16 @@
 	</div>
 	
 	
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!-- map -->
-
 	<!-- google maps -->
+
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqa-2L_YRe22lkHLFDasHHDaXkAokWVFE&callback=initMap">
     </script>
-	<script type="text/javascript" src="js/slide-menu.js"></script>
+	
+	<!-- estil -->
+
+	<script type="text/javascript" src="js/menu-desplegable.js"></script>
+	<script type="text/javascript" src="js/mapes/css-tvm.js"></script>
 </body>
 	
 </html>

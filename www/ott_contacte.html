@@ -38,6 +38,7 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     <link rel="stylesheet" type="text/css" href="css/formcontact.css" />
+    <link rel="stylesheet" type="text/css" href="css/menu-desplegable.css" />
 	
     <title>CAC Mapping</title>
 </head>
@@ -45,27 +46,27 @@
 <body>
 	<!-- my things -->
 	
-	<nav id="slide-menu">
+	<nav id="menu-desplegable">
 	  <ul>
 		<a href = "index.html">
-			<li class="index">Índex</li>
+			<li class="contingut-menu">Índex</li>
 		</a>
 		<a href = "ott_map.html">
-			<li class="mapes">Plànol OTTs</li>
+			<li class="contingut-menu">Plànol OTTs</li>
 		</a>
 		<a href = "ott_form.html">
-		<li class = "formularis">Formulari OTTs</li>
+		<li class = "contingut-menu">Formulari OTTs</li>
 		</a>
 		<a href = "ott_contacte.html">
-			<li class = "contacte">Contacte</li>
+			<li class = "contingut-menu">Contacte</li>
 		</a>
 	  </ul>
 	</nav>
 
 	<!-- Content panel -->
-	<div id="content">
-	  <div class ="menu-trigger"></div>
-	  <h1>CAC Contacte</h1>
+	<div id="cos">
+	  <div class ="polsador-menu"></div>
+	  <h1 id = "titol-principal">CAC Contacte</h1>
 	  <div id = "page_container" style="text-align:center">
 	  		<!--<h2 class="w3-wide w3-center">CONTACTE</h2>-->
 			<p class="w3-opacity w3-center"><i>Tens algun dubte? Contacta'ns!</i></p>
@@ -85,12 +86,7 @@
 	
 	
 	<!--  other -->
-    <script type="text/javascript" src="js/slide-menu.js"></script>
-    <!--
-	<script type="text/javascript">
-        app.initialize();
-    </script>
-	-->
+    <script type="text/javascript" src="js/menu-desplegable.js"></script>
 </body>
 
 </html>

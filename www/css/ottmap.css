@@ -13,16 +13,17 @@ body{
 	font-family: 'Scope One', serif;
 }
 
+/* titol */
 h1{
-	color: #FF6B6B
+	color:#FF6B6B;
 }
 
-#maintitle{
+#titol-principal{
 	text-align:center;
-	/*white-space: nowrap;*/
 }
 
-.wrapper{
+
+.embolcall{
 	display:grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: 0.1fr 0.9fr;
@@ -31,13 +32,10 @@ h1{
 }
 
 
-.one{
-	display: grid;
-	grid-template-columns: 0.05fr 0.95fr;
-}
-.five{
+
+.gran{
 	display:grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
 
 }
 
@@ -54,13 +52,13 @@ h1{
 .fiveinfocontent{
 	text-align:center;
 	border-radius: 10px;
+	
 	overflow-y:scroll;
+	max-height:206px;
 	min-width: 0px;
 	min-height:0px;
 	display:grid;
 	grid-template-columns: 1fr 1fr;
-	height:33%;
-	max-height: 33%;
 }
 #fiveinfo1{
 	background-color:#f3f3f3;
@@ -69,18 +67,13 @@ h1{
 
 #radios{
 	background-color:#ffe4d3;
-	white-space: nowrap;
-}
-#tvs{
-	background-color:#e6f5ff;
-	white-space: nowrap;
-}
-#others{
-	background-color: #feffd3;
+	height:100%;
+	max-height: 100%;
 }
 
 ul{
 	list-style-type: none;	
+	white-space: nowrap
 }
 #others.fiveinfocontent{
 	grid-template-columns: 1fr;
@@ -93,18 +86,8 @@ ul{
 }
 @media screen and (max-width: 568px) and (min-width: 284px) {
 	#maintitle{
-		font-size: 1.1em;
+		font-size: 1.2em;
 	}
-	#radios{
-		font-size: 0.7em;
-	}
-	#tvs{
-		font-size:0.7em;
-	}
-	#others{
-		font-size:0.7em;
-	}
-
 }
 @media screen and (max-width: 852px) and (min-width: 568px) {
 	#maintitle{

@@ -8,14 +8,15 @@
 		<!-- css -->
 			<link rel = "stylesheet" href = "css/menu-desplegable.css">
 			<link rel = "stylesheet" href = "css/buttons.css">	 <!-- css/selector.css -->
-			<link rel = "stylesheet" href = "css/estil-form-broadcasting.css"> <!-- css/form-body.css -->
+			<link rel = "stylesheet" href = "css/broadcastform.css"> <!-- css/form-body.css -->
+
+		<!-- font -->
 			<link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet">
 
 		<!-- js -->
 			<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 			<script type = "text/javascript" src = "js/markerclusterer.js"></script>
-			<script type = "text/javascript" src = "js/basura.js"></script>
-			<script data-cfasync = "false" type = "text/javascript" src = "text/javascript" src = "js/form-submission-handler.js"></script> <!-- currently va sota gran, despres -->
+			<script type = "text/javascript" src = "js/bf/broadcastform.js"></script>
 	</head>
 
 	<body>
@@ -112,9 +113,6 @@
 						</form>
 
 					</div>
-
-
-
 					<div class = "mapa" id = "map_form"></div>
 
 
@@ -132,9 +130,15 @@
 
 		<!-- + JS -->
 
-		<script type = "text/javascript" src = "cordova.js"></script>		<!-- necessari pel phonegap -->
-		<script type = "text/javascript" src = "js/menu-desplegable.js"></script>
+		<!-- necessari pel phonegap -->
+		<script type = "text/javascript" src = "cordova.js"></script>		
+		
+		<!-- google maps-->
+
 		<script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAqa-2L_YRe22lkHLFDasHHDaXkAokWVFE&callback=initMap"></script>
+
+		<!-- estil -->
+		<script type = "text/javascript" src = "js/menu-desplegable.js"></script>
 
 
 	</body>

@@ -17,11 +17,11 @@ h1{
 	color:#FF6B6B;
 }
 
-#maintitle{
+#titol-principal{
 	text-align:center;
 }
 
-.wrapper{
+.embolcall{
 	display:grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: 0.05fr 0.95fr;
