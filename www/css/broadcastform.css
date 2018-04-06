@@ -7,9 +7,14 @@
 	display: none;
 }
 
+html{
+	height:100%;
+}
+
 body{
-	overflow: scroll;
+	overflow-y: scroll;
 	font-family: 'Scope One', serif;
+
 }
 
 
@@ -31,54 +36,102 @@ h1{
 
 #map_form{
 	min-height: 150px;
+	position: absolute;
+	width: calc(100vw * 0.9);
+	height: calc(100vh * 0.9);
+	left: calc(100vw * 0.05);
+	top: calc(100vw * 0.05);
 }
 
-/* canals/emissores dividit en dos columnes, */
-
-#llistat{
-	max-height: 200px;
-	min-height:100px;
-	display:grid;
-	grid-template-columns: 1fr 1fr;
-	width: 100%;
-	overflow: scroll;
+iframe{
+	position: absolute;
+	display: none;
+	width: calc(100vw * 0.9);
+	height: calc(100vh * 0.9);
+	left: calc(100vw * 0.05);
+	top: calc(100vw * 0.05);
 }
 
-#noms{
-	width:50%;
-}
-#valors{
-	min-width: 50%;
-}
-
-#observacions{
-	max-height: 80px;
-}
-.top{
-	background-color: #FF6B6B;
-}
-
-.iel{
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-.el{
-	background-size: : 22px;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-#list1{
-	white-space: nowrap;
-}
-textarea{
-	width: 100%;
-}
 
 #progressbar {
   margin: 0px;
   width: 100%;
   height: 8px;
+  position: absolute;
+  bottom:8px;
+}
+
+
+.pin.icon {
+  color: #000;
+  position: absolute;
+  margin-left: 4px;
+  margin-top: 2px;
+  width: 12px;
+  height: 12px;
+  border: solid 1px currentColor;
+  border-radius: 7px 7px 7px 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.pin.icon:before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 4px;
+  height: 4px;
+  border: solid 1px currentColor;
+  border-radius: 3px;
+}
+
+/* get the styles for both icon*/
+@import "http://cssicon.space/css/icons.css";
+.arrow-left.icon {
+  color: #000;
+  position: absolute;
+  margin-left: 3px;
+  margin-top: 10px;
+  width: 16px;
+  height: 1px;
+  background-color: currentColor;
+}
+.arrow-left.icon:before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: -5px;
+  width: 10px;
+  height: 10px;
+  border-top: solid 1px currentColor;
+  border-right: solid 1px currentColor;
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+}
+.arrow-right.icon {
+  color: #000;
+  position: absolute;
+  margin-left: 2px;
+  margin-top: 10px;
+  width: 16px;
+  height: 1px;
+  background-color: currentColor;
+}
+.arrow-right.icon:before {
+  content: '';
+  position: absolute;
+  right: 1px;
+  top: -5px;
+  width: 10px;
+  height: 10px;
+  border-top: solid 1px currentColor;
+  border-right: solid 1px currentColor;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.icon, .icon:before, .icon:after, .icon i, .icon i:before, .icon i:after { 
+  transition: all 0.4s ease;
 }
 
 @media screen and (max-width: 284px){
@@ -89,15 +142,6 @@ textarea{
 @media screen and (max-width: 568px) and (min-width: 284px) {
 	#titol-principal{
 		font-size: 1.1em;
-	}
-	#radios{
-		font-size: 0.7em;
-	}
-	#tvs{
-		font-size:0.7em;
-	}
-	#others{
-		font-size:0.7em;
 	}
 
 }

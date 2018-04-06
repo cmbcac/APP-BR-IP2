@@ -1064,7 +1064,7 @@ var bar = new ProgressBar.Line(progressbar, {
 });
 
 
-
+window.onload = load;
 
 
 //si el mapa ja esta fet
@@ -1181,7 +1181,6 @@ function controlaInformacio(data,nom){
 				$('ul#list3').children().remove();
 				$('ul#list4').children().remove();
 				$('ul#list5').children().remove();
-				//$('ul#list6').children().remove();
 				
 				
 				for(var i = 0;  i < mapdet.size; i++){
@@ -1206,12 +1205,10 @@ function controlaInformacio(data,nom){
 					}
 					if(end){
 						$('ul#list5').append('<li>'+t+":\t"+c +'</li>');
-						//$('ul#list6').append('<li>'+c+'</li>');
 					}
 				}
-				//document.getElementById("radios").innerText = radtitols.toString()//poble.getRadiosHTML();
-				//document.getElementById("tvs").innerText = poble.getTVSHTML();
-				//document.getElementById("others").innerText = poble.getOthersHTML();
+
+				togglemapform();
 				
 			})
 		})(marker, pobles[pobles.length-1]);
@@ -1229,6 +1226,18 @@ function returnDataParsed(data){
 	var JSONText = data.slice(start,end);
 	JParsedText = JSON.parse(JSONText);
 	return JParsedText;
+}
+
+function togglemapform(){
+	$("#fivemap").slideToggle()
+	$("#fiveinfo1").slideToggle()
+}
+
+function load(){
+	$("#pinmap").click(function(){
+		togglemapform();
+	});
+	console.log("carregat");
 }
 
 //mira de totes les entries quina és latfield i quina és lonfield

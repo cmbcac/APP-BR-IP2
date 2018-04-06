@@ -38,12 +38,11 @@
 	<div class = "cos">
 		<div class="embolcall">
 			<div class = "petit">
-				<div class ="polsador-menu"></div>
+				<div class ="arrow-right icon polsador-menu2"></div>
 				<h1 id = "titol-principal"><strong>Cobertures Ràdios i Televisions de Catalunya</strong></h1>
 			</div>
 			<div class = "five">
-				<div class = "five2x" id = "fivemap">
-				</div>
+				<div class = "five2x" id = "fivemap"></div>
 				<div class = "five2x" id = "fiveinfo1">
 						<div class = "fiveinfocontent" id = "radios">
 							<div>
@@ -68,7 +67,7 @@
 						</div>
 				</div>
 			</div>
-
+			<div id = "pinmap" class="pin icon"></div>
 			<div id = "progressbar" style = "height: 12px"></div>
 		</div>
 	</div>
@@ -94,15 +93,11 @@
 	<script type="text/javascript" src="js/menu-desplegable.js"></script>
 	
 	<script>
-	function setstyle(){
-		$('.fiveinfocontent').css('max-height', $('.five').innerHeight()*0.33);
-	}
-
-	$(document).ready(setstyle);
-	$(window).resize(setstyle);
-
-	
-	
+		$('.polsador-menu2').click(function(){
+			$(this)
+				.toggleClass('arrow-right')
+			    .toggleClass('arrow-left');
+			})	
 	</script>
 
 
