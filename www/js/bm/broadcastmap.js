@@ -1099,7 +1099,11 @@ function handleBefore() {
 function handleComplete(name) {
 	--inProgress;
 	var valor = (1-(inProgress/setValorInProgress()));
-	bar.animate(valor);
+	bar.animate(valor, function(){
+		if(bar.value() == 1){
+			bar.path.setAttribute("stroke", "#6bff6b");
+		}
+	});
 
 	if (!inProgress) {
 		// do what's in here when all requests have completed.
@@ -1161,8 +1165,7 @@ function controlaInformacio(data,nom){
 		//infowindows
 		(function(marker, poble){
 			google.maps.event.addListener(marker, 'click', function(e){
-				infoWindow.setContent(poble.poble);// + "  "+poble.descripcio[0].titol + " ");
-				//infoWindow.setContent("<strong>" + poble.poble+ "</strong><br>" + poble.setContent());
+				infoWindow.setContent(poble.poble);
 				infoWindow.open(map,marker);
 				
 				var radtitols = [];
@@ -1208,8 +1211,17 @@ function controlaInformacio(data,nom){
 					}
 				}
 
-				togglemapform();
-				
+				if(marker.getIcon() == "http://maps.google.com/mapfiles/ms/icons/green-dot.png"){
+					togglemapform();
+				}
+				else{
+					for(var i = 0; i < array.length; i++){
+						if (array[i].getIcon() == 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'){
+							array[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+						}
+					}
+					marker.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");	
+				}		
 			})
 		})(marker, pobles[pobles.length-1]);
 		
@@ -1273,6 +1285,7 @@ function setMarker(comarca, myLatLng, entry, map, array){
 		var marker = new google.maps.Marker({
 			position: myLatLng,
 			title: entry['gsx$indiqueuelmunicipidesdonompliuelformulari'].$t,
+			icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
 			map: map
 		});
 	}

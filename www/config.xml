@@ -12,5 +12,5 @@
     <platform name="ios">
         <allow-navigation href="*" />
     </platform>
-    <engine name="ios" spec="~4.5.4" />
+    
 </widget>

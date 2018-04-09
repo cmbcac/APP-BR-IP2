@@ -3,7 +3,7 @@
 /*configura la icona*/
 function setIcon(){
 	im = {
-		url: 'img/logo-IPTV2.png',
+		url: 'img/logo-IPTV3.png',
 		scaledSize: new google.maps.Size(30, 26),
 	};
 	
@@ -243,6 +243,20 @@ var inProgress;
 
 inProgress = setValorInProgress();
 
+window.onload = load;
+
+
+function togglemapform(){
+	$("#fivemap").slideToggle()
+	$("#fiveinfo1").slideToggle()
+}
+
+function load(){
+	$("#pinmap").click(function(){
+		togglemapform();
+	});
+	console.log("carregat");
+}
 
 
 
@@ -386,9 +400,25 @@ function controlaInformacio(data,nom){
 						//$('ul#list6').append('<li>'+c+'</li>');
 					}
 				}
-				//document.getElementById("radios").innerText = radtitols.toString()//poble.getRadiosHTML();
-				//document.getElementById("tvs").innerText = poble.getTVSHTML();
-				//document.getElementById("others").innerText = poble.getOthersHTML();
+				if(marker.getIcon().url == "img/logo-IPTV2.png"){
+					togglemapform();
+				}
+				else{
+					for(var i = 0; i < array.length; i++){
+						if (array[i].getIcon().url == 'img/logo-IPTV2.png'){
+							im = {
+								url: 'img/logo-IPTV3.png',
+								scaledSize: new google.maps.Size(30, 26),
+							};
+							array[i].setIcon(im);
+						}
+					}
+					im = {
+						url: 'img/logo-IPTV2.png',
+						scaledSize: new google.maps.Size(30, 26),
+					};
+					marker.setIcon(im);	
+				}
 				
 			})
 		})(marker, pobles[pobles.length-1]);

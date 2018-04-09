@@ -30,7 +30,6 @@ h1{
 
 .five{
     display: block;
-    grid-template-columns: 1fr;
     width: calc(100vw*0.9);
     height: calc(100vh*0.9);
     left: calc(100vw*0.05);
