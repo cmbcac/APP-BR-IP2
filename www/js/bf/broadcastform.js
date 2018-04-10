@@ -734,19 +734,6 @@ function load(){
 	});
 	console.log("carregat");
 }
-function ajustaMapa(){
-		var mw = window.innerWidth * 0.9;
-		var mh = window.innerHeight * 0.9;
-
-		var emptyw = window.innerWidth - mw;
-		var emptyh = window.innerHeight - mh;
-		var halfew = emptyw / 2;
-		var halfeh = emptyh / 2;
-		$("div#map_form").css("left", halfew);
-		$("div#map_form").css("top", halfeh);
-		$("iframe.formulari").css("left", halfew);
-		$("iframe.formulari").css("top", halfeh);
-}
 function togglemapform(){
 	$("div#map_form").toggle();
 	$("iframe.formulari").toggle();
@@ -829,14 +816,6 @@ var bar = new ProgressBar.Line(progressbar, {
 
 
 window.onload = load;
-ajustaMapa();
-
-
-
-
-
-window.addEventListener("resize", ajustaMapa);
-
 
 function initMap() {
 		todo = !todo;

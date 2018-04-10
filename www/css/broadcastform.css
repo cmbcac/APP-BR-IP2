@@ -27,31 +27,38 @@ h1{
 	text-align:center;
 }
 
+.embolcall{
+  width: 100vw;
+  height: 100vh;
+}
+
+
+
 /*antic wrapcontent*/
 
 .gran{
-	width: 100%;
+  display: block;
+  width: calc(100vw*0.9);
+  height: calc(100vh*0.9);
+  left: calc(100vw*0.05);
+  position: absolute;
+  top: calc(100vh*0.05);
 }
 /* mapa */
 
 #map_form{
-	min-height: 150px;
-	position: absolute;
-	width: calc(100vw * 0.9);
-	height: calc(100vh * 0.9);
-	left: calc(100vw * 0.05);
-	top: calc(100vh * 0.05);
+  position: absolute;
+	height: 100%;
+  width:100%;
   border-radius: 10px;
 }
 
 iframe{
-	position: absolute;
-	display: none;
-	width: calc(100vw * 0.9);
-	height: calc(100vh * 0.9);
-	left: calc(100vw * 0.05);
-	top: calc(100vh * 0.05);
-  border-radius:10px;
+  display: none;
+  position: absolute;
+  height: 100%;
+  width:100%;
+  border-radius: 10px;
 }
 
 
@@ -61,6 +68,10 @@ iframe{
   height: 8px;
   position: absolute;
   bottom:8px;
+}
+
+#pinmap{
+  top: 23px;
 }
 
 
