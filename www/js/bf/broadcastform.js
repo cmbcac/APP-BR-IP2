@@ -837,11 +837,9 @@ function initMap() {
 					if (marker != undefined) marker.setMap(null);
 					marker = new google.maps.Marker({
 						position: event.latLng,
-						map: map
+						map: map,
+						icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
 					});
-					
-
-					
 					
 					console.log(marker.getPosition().lat());
 					console.log(marker.getPosition().lng());
@@ -851,16 +849,18 @@ function initMap() {
 						var com = pob.comarca;										//	nom de la comarca en la que pertany
 						var icom = dict_comarques.get(com);							// 	index de la comarca
 						var numdet = comarques[icom].canals.length;						// 	quants detalls te
+
+						infoWindow.setContent(com);
+						infoWindow.open(map,marker);						
 						
-						
-						(function(marker){ google.maps.event.addListener(marker, 'click', function(e){
-								infoWindow.setContent(com);
-								infoWindow.open(map,marker);
-								
+						(function(marker){ google.maps.event.addListener(marker, 'click', 
+							function(e){
+								marker.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");
+								setTimeout(togglemapform, 500);
 							})
 						})(marker);
 						insertaiframe(comarques[icom].iframe);
-						togglemapform();
+						
 					}
 
 				

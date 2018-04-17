@@ -50,6 +50,9 @@ h1{
 	background-color: #FF6B6B;
 }
 
+textarea{
+  width:100%;
+}
 
 .pin.icon {
   color: #000;
