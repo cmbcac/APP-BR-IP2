@@ -755,6 +755,26 @@ function insertaiframe(iframe){
 }
 
 
+function geocodeLatLng(geocoder, map, infowindow, marker) {
+	var latlng = {lat:marker.getPosition().lat(), lng: marker.getPosition().lng()};
+	geocoder.geocode({'location': latlng}, function(results, status) {
+		if (status === 'OK') {
+			if (results[0]) {
+			  map.setZoom(11);
+			  infowindow.setContent(results[0].formatted_address);
+			  infowindow.open(map, marker);
+			  //poble = results[0].address_components[1].long_name
+			  //codi postal = results[0].address_components[5].long_name
+
+		} else {
+		  window.alert('No results found');
+		}
+		} else {
+		window.alert('Geocoder failed due to: ' + status);
+		}
+	});
+}
+
 /*				VARIABLES 				*/
 
 var marker;
@@ -765,7 +785,7 @@ var JParsedText;
 var map;
 var array = []; 				// array de marcadors, dels formularis
 var infoWindow;					// per crear la finestra d'informació de cada formulari. 
-
+var geocoder;
 
 var canals = [];				// es guardaran totes les emissores que hi han amb el seu nom json, per a poder extreure'n la informació dels formularis. 
 var ajuntaments = [];				// es refereix als formularis omplerts, inicialment només ho havien omplert ajuntaments per tan cada punt era un ajt diferent (i uns quants usuaris deixant les seves observacions)
@@ -776,7 +796,6 @@ var done_cc = false;
 ompleArrayComarques();
 var idemissores = "1T-sCSgblXVc3R7oEuKK-Fm9p-pkjGFt0cCnwERGON50";
 var id_comarquescanals = '1p_2jhSOWnop5TkdFxmNhzMk16uWbkv22CggAvUg0YyM';
-//executaAJAX3(id_comarquescanals, omple_canalscomarca, string);
 
 
 
@@ -821,7 +840,8 @@ function initMap() {
 		todo = !todo;
 		try{
 			var catalunya = {lat: 41.385900681193434, lng: 2.1711516380310063};
-				infoWindow = new google.maps.InfoWindow();//({pixelOffset: new google.maps.Size(0, 45)});
+				infoWindow = new google.maps.InfoWindow();
+				geocoder =new google.maps.Geocoder;
 				map = new google.maps.Map(document.getElementById('map_form'), {
 				center: catalunya,
 				zoom: 8,
@@ -843,6 +863,7 @@ function initMap() {
 					
 					console.log(marker.getPosition().lat());
 					console.log(marker.getPosition().lng());
+					geocodeLatLng(geocoder, map, infoWindow, marker);
 					if(ajuntamentsDescarregats){
 
 						var pob = closestAjuntament(maplatlongs, marker, ajuntaments);	//	ajuntament més proper
@@ -850,7 +871,6 @@ function initMap() {
 						var icom = dict_comarques.get(com);							// 	index de la comarca
 						var numdet = comarques[icom].canals.length;						// 	quants detalls te
 
-						infoWindow.setContent(com);
 						infoWindow.open(map,marker);						
 						
 						(function(marker){ google.maps.event.addListener(marker, 'click', 
