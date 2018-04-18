@@ -50,9 +50,44 @@
 				</div>
 				<div class = "gran" > <!-- class = wrapcontent" -->
 					<div class = "contenidormapa" id = "map_form"></div>
-					<iframe class = "formulari" id = "google_form"></iframe>
+					<form id = "gform" method = "POST" class = "formulari"">
+						<div class = "embolcall-info">
+							<div class = "top"> Dades personals </div>
+							<input placeholder = "Nom i Cognoms" name = "Nom i cognoms:" value = "" required/>	
+							<input placeholder = "Telèfon" name = "Telèfon"
+							value = ""	/>
+							<input placeholder="Correu Electrònic" name = "Correu Electrònic" value = "">
+							<div class = "top"> Noms d'altres emissores de ràdio </div>
+							<input placeholder = "Altres emissores de ràdio 1" name = "Altres emissores de ràdio 1" value = ""/>
+							<input placeholder = "Altres emissores de ràdio 2" name = "Altres emissores de ràdio 2" value = ""/>
+							<input placeholder = "Altres emissores de ràdio 3" name = "Altres emissores de ràdio 3" value = ""/>
+							<div class = "top"> Noms d'altres canals de televisió </div>
+							<input placeholder = "Altres emissores de TV 1" name = "Altres emissores de TV 1" value = ""/>
+							<input placeholder = "Altres emissores de TV 2" name = "Altres emissores de TV 2" value = ""/>
+							<input placeholder = "Altres emissores de TV 3" name = "Altres emissores de TV 3" value = ""/>
+							<div class = "top2">Altre formes de comunicació local 1</div>
+							<input placeholder = "Nom del servei" name = "Altres formes de comunicació local 1" value = ""/>
+							<input placeholder = "Descripció" name = "Altres formes de comunicació local 1" value = ""/>
+							<input placeholder = "Difusió" name = "Altres formes de comunicació local 1" value = ""/>
+							<input placeholder = "Forma d'accés" name = "Altres formes de comunicació local 1" value = ""/>
+							<div class = "top2">Altre formes de comunicació local 2</div>
+							<input placeholder = "Nom del servei" name = "Altres formes de comunicació local 2" value = ""/>
+							<input placeholder = "Descripció" name = "Altres formes de comunicació local 2" value = ""/>
+							<input placeholder = "Difusió" name = "Altres formes de comunicació local 2" value = ""/>
+							<input placeholder = "Forma d'accés" name = "Altres formes de comunicació local 2" value = ""/>
+							<div class = "top"> Observacions </div>
+							<input placeholder = "" name = "Observacions (Espai dedicat a incloure aquelles mancances, deficiències en relació als mitjans de comunicació que es reben al municipi)" value = "" />
+							<button style="background-color:#295E86;color:white"> <i></i>&nbsp;Envia</button>
+						</div>
+						<div id = "llistat"> <!-- id = "list" -->
+							<div id = "noms"> <ul id = "list1"> </ul> </div>
+							<div id = "valors"> <ul id = "list2"> </ul> </div>
+						</div>
+						
+					</form>
 				</div>
-				<div id = "pinmap" class="pin icon"></div>
+				<div id = "pinmap" class="edit icon"></div>
+				<div id = "sigico" class="signal icon"></div>
 				<div id = "progressbar"></div>
 			</div>
 

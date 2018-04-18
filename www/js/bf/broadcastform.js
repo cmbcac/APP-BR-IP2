@@ -81,6 +81,35 @@ function ompleEmbedsComarques(){
 	embeddFormulari("vallesoriental", 'https://docs.google.com/forms/d/e/1FAIpQLSfR3aZvf39-AK7lO07XBp-nc-DVsCg4zuc10dWH1P0caJkAgQ/viewform?embedded=true');	
 }
 
+function afegeixBotonsCobertures(n, i){
+	/*
+	n: nom de la emissora
+	i: index
+	*/
+	
+	var notAppendList = ["Altres emisores de ràdio 1", "Altres emisores de ràdio 2", "Altres emisores de ràdio 3", 
+	"RÀDIO LOCAL", "TELEVISIÓ NACIONAL", "TELEVISIÓ LOCAL", "TELEVISIÓ ESTATAL",
+	"Altres canals de TV 1", "Altres canals de TV 2", "Altres canals de TV 3", "ALTRES FORMES DE COMUNICACIÓ 1", "ALTRES FORMES DE COMUNICACIÓ 2",
+	"Nom comercial del servei", "ALTRES FORMES DE COMUNICACIÓ", "OBSERVACIÓNS"];
+
+	var t = n;
+	if(notAppendList.indexOf(t) == -1){
+		$("ul#list1").append('<li class = "nel" id = "'+i+'">'+ t+ '</li>');
+		var startli = '<li class = "iel">';
+		var title = 'title = no arriba';
+		var id = " ["+t+"]";
+		var name = id;
+		var iput = '<input type ="radio" id="'+id+'" name = "'+name+'" ';
+		var nastring = iput+'value = "Sense Senyal" title = "Sense Senyal" class = "na el ' +i+ '-example-class">';
+		var rstring = iput+'value = "Dolenta" title = " Senyal Dolenta" class = "r el ' +i+ '-example-class">';
+		var ostring = iput+'value = "Regular" title = "Senyal Regular" class = "o el ' +i+ '-example-class">';
+		var gstring = iput+'value = "Bona" title = "Senyal Bona" class = "g el ' +i+ '-example-class">';
+		var endli = '</li>';
+		var string = startli+nastring+rstring+ostring+gstring+endli;
+		$('ul#list2').append(string);
+	}
+	
+}
 
 function setValorInProgress(){
 	return 42;
@@ -207,6 +236,19 @@ function ompleArrayCanals(data){
 		var locjson = data.feed.entry[i].gsx$idjson.$t
 		canals.push(new Detall(locnom, locjson));
 	}
+}
+
+function associaCPComarques(data){
+	var data = returnDataParsed(data);
+	for(var i = 0 ; i < data.feed.entry.length; i++){
+		var nom = data.feed.entry[i].gsx$codipostal.$t;
+		var cp = {
+			comarca : data.feed.entry[i].gsx$comarca.$t,
+			municipi : data.feed.entry[i].gsx$nommunicipi.$t
+		}
+		codipostal_comarca.set(nom, cp);
+	}
+
 }
 
 function omple_canalscomarca(data){
@@ -490,6 +532,50 @@ function cargaDatosSegonsID(map){
 }
 
 
+function ompletraductor(){
+	maptraductor.set("Alta Ribagorça","altaribagorca");
+	maptraductor.set("Alt Camp","altcamp");
+	maptraductor.set("Alt Empordà","altemporda");
+	maptraductor.set("Alt Penedès","altpanades");
+	maptraductor.set("Alt Urgell","alturgell");
+	maptraductor.set("Anoia","anoia");
+	maptraductor.set("Aran","aran");
+	maptraductor.set("Bages","bagues");
+	maptraductor.set("Baix Camp","baixcamp");
+	maptraductor.set("Baix Ebre","baixebre");
+	maptraductor.set("Baix Empordà","baixemporda");
+	maptraductor.set("Baix Llobregat","baixllobregat");
+	maptraductor.set("Baix Penedès","baixpanades");
+	maptraductor.set("Barcelonès","barcelones");
+	maptraductor.set("Berguedà","bergueda");
+	maptraductor.set("Cerdanya","cerdanya");
+	maptraductor.set("Conca de Barbera","concadebarbera");
+	maptraductor.set("Garraf","garraf");
+	maptraductor.set("Garrigues","garrigues");
+	maptraductor.set("Garrotxa","garrotxa");
+	maptraductor.set("Gironès","girones");
+	maptraductor.set("Noguera","lanoguera");
+	maptraductor.set("Maresme","maresme");
+	maptraductor.set("Montsià","montsia");
+	maptraductor.set("Osona","osona");
+	maptraductor.set("Pallars Jussà","pallarsjussa");
+	maptraductor.set("Pallars Sobirà","pallarssobira");
+	maptraductor.set("Pla de l'Estany","pladestany");
+	maptraductor.set("Pla d'Urgell","pladurgell");
+	maptraductor.set("Priorat","priorat");
+	maptraductor.set("Ribera d'Ebre","riberadebre");
+	maptraductor.set("Ripollès","ripolles");
+	maptraductor.set("Segarra","segarra");
+	maptraductor.set("Segrià","segria");
+	maptraductor.set("Selva","selva");
+	maptraductor.set("Solsonès","solsones");
+	maptraductor.set("Tarragonès","tarragones");
+	maptraductor.set("Terra Alta","terraalta");
+	maptraductor.set("Urgell","urgell");
+	maptraductor.set("Valles Occidental","vallesoccidental");
+	maptraductor.set("Valles Oriental","vallesoriental");
+}
+
 //es posa la url segons la id, es diu que es vol obtenir
 //si tot va bé, vol dir que tenim info i la administrem
 //sino igualment, quan acaba ho comunica
@@ -698,70 +784,62 @@ function obtenEntrys(ajuntaments, ajt, entry, canalscomarca){
 }
 
 
-function afegeixBotonsCobertures(n, i){
-	/*
-	n: nom de la emissora
-	i: index
-	*/
-	
-	var notAppendList = ["Altres emisores de ràdio 1", "Altres emisores de ràdio 2", "Altres emisores de ràdio 3", 
-	"RÀDIO LOCAL", "TELEVISIÓ NACIONAL", "TELEVISIÓ LOCAL", "TELEVISIÓ ESTATAL",
-	"Altres canals de TV 1", "Altres canals de TV 2", "Altres canals de TV 3", "ALTRES FORMES DE COMUNICACIÓ 1", "ALTRES FORMES DE COMUNICACIÓ 2",
-	"Nom comercial del servei", "ALTRES FORMES DE COMUNICACIÓ", "OBSERVACIÓNS"];
-
-	var t = n;
-	if(notAppendList.indexOf(t) == -1){
-		$("ul#list1").append('<li class = "nel" id = "'+i+'">'+ t+ '</li>');
-		var startli = '<li class = "iel">';
-		var title = 'title = no arriba';
-		var id = " ["+t+"]";
-		var name = id;
-		var iput = '<input type ="radio" id="'+id+'" name = "'+name+'" ';
-		var nastring = iput+'value = "Sense Senyal" title = "Sense Senyal" class = "na el ' +i+ '-example-class">';
-		var rstring = iput+'value = "Dolenta" title = " Senyal Dolenta" class = "r el ' +i+ '-example-class">';
-		var ostring = iput+'value = "Regular" title = "Senyal Regular" class = "o el ' +i+ '-example-class">';
-		var gstring = iput+'value = "Bona" title = "Senyal Bona" class = "g el ' +i+ '-example-class">';
-		var endli = '</li>';
-		var string = startli+nastring+rstring+ostring+gstring+endli;
-		$('ul#list2').append(string);
-	}
-	
-}
 function load(){
 	$("#pinmap").click(function(){
-		$("div#map_form").slideToggle();
-		$("iframe.formulari").slideToggle();
+		$(this)
+			    .toggleClass('map')
+			    .toggleClass('edit');			  
+		$("#sigico").slideToggle();
+		$("div#map_form").slideToggle();	
+		$(".formulari").slideToggle();
 	});
+	$("#sigico").click(function(){
+		$(".embolcall-info").slideToggle();	
+		$("#llistat").slideToggle();
+		if($("#llistat").css("display") == "block"){
+			$("#llistat").css("display","grid");
+
+		}
+		$('.el').css('height', $('.nel').innerHeight());
+	});
+
+
 	console.log("carregat");
 }
 function togglemapform(){
 	$("div#map_form").toggle();
-	$("iframe.formulari").toggle();
+	$("fomr#gform.formulari").toggle();
 
-}
-
-
-function loadIframe(iframeName, url) {
-    var $iframe = $('#' + iframeName);
-    if ( $iframe.length ) {
-        $iframe.attr('src',url);   
-        return false;
-    }
-    return true;
 }
 
 function insertaiframe(iframe){
 	$("iframe.formulari").attr('src', iframe)
 }
 
+function getzipcode(results){
+	for(var i = 0; i < results[0].address_components.length; i++){
+		var text = results[0].address_components[i].long_name; 
+		if( text.match("[0-9]+") && text.length== 5 ){
+			return text;
+		}
+	}
+}
 
 function geocodeLatLng(geocoder, map, infowindow, marker) {
 	var latlng = {lat:marker.getPosition().lat(), lng: marker.getPosition().lng()};
+	var com = "";
 	geocoder.geocode({'location': latlng}, function(results, status) {
 		if (status === 'OK') {
 			if (results[0]) {
-			  map.setZoom(11);
-			  infowindow.setContent(results[0].formatted_address);
+				var zipcode = getzipcode(results);
+				try{
+					com = codipostal_comarca.get(zipcode).comarca;
+					console.log(zipcode + " : " + com );
+				}
+				catch(e){
+					console.log("cp: "+zipcode+ "\n+err: "+ e);
+				}
+			  infowindow.setContent(results[0].formatted_address );//*/cp + " : " +com
 			  infowindow.open(map, marker);
 			  //poble = results[0].address_components[1].long_name
 			  //codi postal = results[0].address_components[5].long_name
@@ -773,6 +851,7 @@ function geocodeLatLng(geocoder, map, infowindow, marker) {
 		window.alert('Geocoder failed due to: ' + status);
 		}
 	});
+	return com;
 }
 
 /*				VARIABLES 				*/
@@ -796,9 +875,11 @@ var done_cc = false;
 ompleArrayComarques();
 var idemissores = "1T-sCSgblXVc3R7oEuKK-Fm9p-pkjGFt0cCnwERGON50";
 var id_comarquescanals = '1p_2jhSOWnop5TkdFxmNhzMk16uWbkv22CggAvUg0YyM';
+var id_cpcomarques = '1buewNhQVAmy_lEdH_T1iAeZMeQFclPyy0BHa_rOOU7Y';
 
-
-
+var codipostal_comarca = new Map(); //on guardar els codis postals i la seva info associada
+var maptraductor = new Map();
+ompletraductor();
 var markerCluster;	
 
 var maplatlongs = new Map();	// per a que no hi hagin dos marcadors en la mateixa ubicació. 
@@ -834,7 +915,9 @@ var bar = new ProgressBar.Line(progressbar, {
 });
 
 
+
 window.onload = load;
+executaAJAX3(id_cpcomarques, associaCPComarques, "");
 
 function initMap() {
 		todo = !todo;
@@ -863,24 +946,69 @@ function initMap() {
 					
 					console.log(marker.getPosition().lat());
 					console.log(marker.getPosition().lng());
-					geocodeLatLng(geocoder, map, infoWindow, marker);
+					var com = geocodeLatLng(geocoder, map, infoWindow, marker);
+
 					if(ajuntamentsDescarregats){
 
 						var pob = closestAjuntament(maplatlongs, marker, ajuntaments);	//	ajuntament més proper
-						var com = pob.comarca;										//	nom de la comarca en la que pertany
-						var icom = dict_comarques.get(com);							// 	index de la comarca
+						if(com == "") com = pob.comarca;								//	nom de la comarca en la que pertany
+						else{
+							com = maptraductor.get(com);
+						}
+						var icom = dict_comarques.get(com);								// 	index de la comarca
 						var numdet = comarques[icom].canals.length;						// 	quants detalls te
 
 						infoWindow.open(map,marker);						
 						
+						// LISTENER DEL MAPA
+
 						(function(marker){ google.maps.event.addListener(marker, 'click', 
 							function(e){
 								marker.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");
 								setTimeout(togglemapform, 500);
 							})
 						})(marker);
-						insertaiframe(comarques[icom].iframe);
+
+						// LLISTAT DE BOTONS DE COBERTURES
 						
+						$('#gform').attr('action', 'https://script.google.com/macros/s/'+comarques[icom].linkpost+'/exec');
+						
+						$('ul#list1').children().remove();
+						$('ul#list2').children().remove();
+						
+						for(var i = 0; i < numdet; i++){
+							var n ;
+							if(comarques[icom].canals[i] != undefined){
+								n = comarques[icom].canals[i].titol;							//nom de cada detall/canal/emissora que te
+							}
+							else{
+								break;
+							}
+							
+							afegeixBotonsCobertures(n,i);
+							
+							
+							$('.el').css('height', $('.nel').innerHeight());				//tamany de la caixa
+	
+							try{
+								$("[class*=example-class]").hover(function(){
+									var c = this.className.match(/(\d+)-example-class/)[1];		//in hover
+									$('#'+c).css('background-color', '#fcf4eb');
+								}, function(){
+									var c = this.className.match(/(\d+)-example-class/)[1];		//out hover
+									$('#'+c).css('background-color', '#ffffff');
+								});
+							}
+							catch(e){
+								alert(e);
+							}
+							
+							$('.el').on('click', function(event){
+								event.stopImmediatePropagation();
+								var c = this.className.match(/(\d+)-example-class/)[1];
+							});
+
+						}
 					}
 
 				

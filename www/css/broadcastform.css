@@ -22,6 +22,13 @@ body{
 h1{
 	color:#FF6B6B;
 }
+.top{
+  color: #FF6B6B;
+}
+.top2{
+  color:#ff9c9c;
+}
+
 
 #titol-principal{
 	text-align:center;
@@ -70,81 +77,31 @@ iframe{
   bottom:8px;
 }
 
-#pinmap{
-  top: 23px;
+form{
+  display: none;
+}
+form#gform.formulari{
+  display: none;
 }
 
-
-.pin.icon {
-  color: #000;
-  position: absolute;
-  margin-left: 4px;
-  margin-top: 2px;
-  width: 12px;
-  height: 12px;
-  border: solid 1px currentColor;
-  border-radius: 7px 7px 7px 0;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-.pin.icon:before {
-  content: '';
-  position: absolute;
-  left: 3px;
-  top: 3px;
-  width: 4px;
-  height: 4px;
-  border: solid 1px currentColor;
-  border-radius: 3px;
+input{
+  width:100%;
 }
 
-/* get the styles for both icon*/
-@import "http://cssicon.space/css/icons.css";
-.arrow-left.icon {
-  color: #000;
-  position: absolute;
-  margin-left: 3px;
-  margin-top: 10px;
-  width: 16px;
-  height: 1px;
-  background-color: currentColor;
-}
-.arrow-left.icon:before {
-  content: '';
-  position: absolute;
-  left: 1px;
-  top: -5px;
-  width: 10px;
-  height: 10px;
-  border-top: solid 1px currentColor;
-  border-right: solid 1px currentColor;
-  -webkit-transform: rotate(-135deg);
-          transform: rotate(-135deg);
-}
-.arrow-right.icon {
-  color: #000;
-  position: absolute;
-  margin-left: 2px;
-  margin-top: 10px;
-  width: 16px;
-  height: 1px;
-  background-color: currentColor;
-}
-.arrow-right.icon:before {
-  content: '';
-  position: absolute;
-  right: 1px;
-  top: -5px;
-  width: 10px;
-  height: 10px;
-  border-top: solid 1px currentColor;
-  border-right: solid 1px currentColor;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+#llistat{
+  display: none;
+  min-width: 100%;
+  overflow: scroll;
+  height: calc(100vh*0.9);;
+  grid-template-columns: 1fr 1fr;
+
 }
 
-.icon, .icon:before, .icon:after, .icon i, .icon i:before, .icon i:after { 
-  transition: all 0.4s ease;
+#noms{
+  min-width:50%;
+}
+#valors{
+  min-width:50%;
 }
 
 @media screen and (max-width: 284px){
