@@ -27,7 +27,7 @@
 		<nav id = "menu-desplegable">
 			<ul>
 				<li class = "contingut-menu"> <a href = "index.html"> Inici </a> </li>
-				<li class = "contingut-menu"> <a href = "broadcast_form.html"> Formulari Broadcast </a> 
+				<li class = "contingut-menu"> <a href = "broadcast_form.html"> Registre Cobertura Broadcast </a> 
 				<li class = "contingut-menu"> <a href = "broadcast_map.html"> Plànol Broadcast </a> </li>
 				</li>
 				<li class = "contingut-menu"> <a href = "broadcast_contacte.html"> Contacte </a> </li>
@@ -46,7 +46,7 @@
 
 				<div class = "petit" > <!-- class = "one" -->
 					<div class="arrow-right icon polsador-menu2"></div>												
-					<h1 id = "titol-principal"> <strong> Registre de noves cobertures </strong> </h1> 	<!-- id= "maintitle" -->
+					<h1 id = "titol-principal"> <strong> Registre d'una cobertura Broadcast </strong> </h1> 	<!-- id= "maintitle" -->
 				</div>
 				<div class = "gran" > <!-- class = wrapcontent" -->
 					<div class = "contenidormapa" id = "map_form"></div>
@@ -77,6 +77,54 @@
 							<input placeholder = "Forma d'accés" name = "Altres formes de comunicació local 2" value = ""/>
 							<div class = "top"> Observacions </div>
 							<input placeholder = "" name = "Observacions (Espai dedicat a incloure aquelles mancances, deficiències en relació als mitjans de comunicació que es reben al municipi)" value = "" />
+							<div class = "top"> Ubicació (cliqui sobre el mapa o bé indiqui el municipi)"</div>
+							<input placeholder = "Latitud:Obri el mapa o activi la geolocalització" name = "Latitud" value = "" id ="Latitud" required/>
+							<input placeholder = "Longitud:Obri el mapa o activi la geolocalització" name = "Longitud" value = "" id = "Longitud" required/>
+							<input placeholder = "Municipi" name = "Municipi" value = "" id = "Municipi"/>
+							<select id="Comarca" name="Comarca">
+								<option>Seleccioni comarca</option>
+								<option>Alta Ribagorça</option>
+								<option>Alt Camp</option>
+								<option>Alt Empordà</option>
+								<option>Alt Penedès</option>
+								<option>Alt Urgell</option>
+								<option>Anoia</option>
+								<option>Aran</option>
+								<option>Bages</option>
+								<option>Baix Camp</option>
+								<option>Baix Ebre</option>
+								<option>Baix Empordà</option>
+								<option>Baix Llobregat</option>
+								<option>Baix Penedès</option>
+								<option>Barcelonès</option>
+								<option>Berguedà</option>
+								<option>Cerdanya</option>
+								<option>Conca de Barbera</option>
+								<option>Garraf</option>
+								<option>Garrigues</option>
+								<option>Garrotxa</option>
+								<option>Gironès</option>
+								<option>Noguera</option>
+								<option>Maresme</option>
+								<option>Montsià</option>
+								<option>Osona</option>
+								<option>Pallars Jussà</option>
+								<option>Pallars Sobirà</option>
+								<option>Pla de l'Estany</option>
+								<option>Pla d'Urgell</option>
+								<option>Priorat</option>
+								<option>Ribera d'Ebre</option>
+								<option>Ripollès</option>
+								<option>Segarra</option>
+								<option>Segrià</option>
+								<option>Selva</option>
+								<option>Solsonès</option>
+								<option>Tarragonès</option>
+								<option>Terra Alta</option>
+								<option>Urgell</option>
+								<option>Valles Occidental</option>
+								<option>Valles Oriental</option>
+							</select>
 							<button style="background-color:#295E86;color:white"> <i></i>&nbsp;Envia</button>
 						</div>
 						<div id = "llistat"> <!-- id = "list" -->
@@ -86,7 +134,7 @@
 						
 					</form>
 				</div>
-				<div id = "pinmap" class="edit icon"></div>
+				<div id = "pinmap" class="map icon"></div>
 				<div id = "sigico" class="signal icon"></div>
 				<div id = "progressbar"></div>
 			</div>
@@ -120,7 +168,8 @@
 			})
 
 		</script>			
-
+		<!-- formulari -->
+			<script data-cfasync="false" type="text/javascript" src="js/form-submission-handler.js"></script> 
 
 	</body>
 

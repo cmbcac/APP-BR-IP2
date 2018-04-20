@@ -769,8 +769,7 @@ function obtenEntrys(ajuntaments, ajt, entry, canalscomarca){
 				ajt.descripcio.push(new Detall(canalscomarca[i].titol, entry[tosearch].$t));
 			}
 		}
-		catch(err){
-			
+		catch(err){			
 			console.log(ajt);
 			console.log(i + "  " + canalscomarca.length);
 			console.log(canalscomarca[i])
@@ -783,29 +782,52 @@ function obtenEntrys(ajuntaments, ajt, entry, canalscomarca){
 	ajuntaments.push(ajt);
 }
 
+// un cop carregada la pagina prepara què fer quan facin click sobre el pin i la senyal de cobertura
 
 function load(){
+	
+	
 	$("#pinmap").click(function(){
 		$(this)
 			    .toggleClass('map')
-			    .toggleClass('edit');			  
-		$("#sigico").slideToggle();
+			    .toggleClass('import');			  
+		$("#sigico").toggleClass('signal').toggleClass('pin');
 		$("div#map_form").slideToggle();	
 		$(".formulari").slideToggle();
 	});
+	
+	
 	$("#sigico").click(function(){
-		$(".embolcall-info").slideToggle();	
-		$("#llistat").slideToggle();
-		if($("#llistat").css("display") == "block"){
-			$("#llistat").css("display","grid");
+		if($("#sigico").attr("Class") == "icon signal"){
+			$(".embolcall-info").slideToggle();	
+			$("#llistat").slideToggle();
+			if($("#llistat").css("display") == "block"){
+				$("#llistat").css("display","grid");
 
+			}
+			$('.el').css('height', $('.nel').innerHeight());
 		}
-		$('.el').css('height', $('.nel').innerHeight());
+		if($("#sigico").attr("Class") == "icon pin"){
+			navigator.geolocation.getCurrentPosition(function(position) {
+  				if (marker != undefined) marker.setMap(null);
+					marker = new google.maps.Marker({
+						position: {lat:position.coords.latitude, lng:position.coords.longitude},
+						map: map,
+						icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+					});
+					geocodeLatLng(geocoder, map, infoWindow, marker);
+					infowindow.open();
+			});
+		}
+
 	});
 
 
 	console.log("carregat");
 }
+
+// Toggle 
+
 function togglemapform(){
 	$("div#map_form").toggle();
 	$("fomr#gform.formulari").toggle();
@@ -816,43 +838,80 @@ function insertaiframe(iframe){
 	$("iframe.formulari").attr('src', iframe)
 }
 
-function getzipcode(results){
-	for(var i = 0; i < results[0].address_components.length; i++){
-		var text = results[0].address_components[i].long_name; 
-		if( text.match("[0-9]+") && text.length== 5 ){
-			return text;
-		}
-	}
-}
 
-function geocodeLatLng(geocoder, map, infowindow, marker) {
-	var latlng = {lat:marker.getPosition().lat(), lng: marker.getPosition().lng()};
-	var com = "";
-	geocoder.geocode({'location': latlng}, function(results, status) {
-		if (status === 'OK') {
-			if (results[0]) {
-				var zipcode = getzipcode(results);
-				try{
-					com = codipostal_comarca.get(zipcode).comarca;
-					console.log(zipcode + " : " + com );
-				}
-				catch(e){
-					console.log("cp: "+zipcode+ "\n+err: "+ e);
-				}
-			  infowindow.setContent(results[0].formatted_address );//*/cp + " : " +com
-			  infowindow.open(map, marker);
-			  //poble = results[0].address_components[1].long_name
-			  //codi postal = results[0].address_components[5].long_name
 
-		} else {
-		  window.alert('No results found');
-		}
-		} else {
-		window.alert('Geocoder failed due to: ' + status);
-		}
-	});
-	return com;
-}
+/*GEOLOCALITZACIÓ*/
+				function getzipcode(results){
+					for(var i = 0; i < results[0].address_components.length; i++){
+						var text = results[0].address_components[i].long_name; 
+						if( text.length == 5){
+							if(parseInt(text[0]) && parseInt(text[1]) && parseInt(text[2]) && parseInt(text[3]) && parseInt(text[4]))
+								return text;
+						}
+					}
+					return ""
+				}
+
+				function geocodeLatLng(geocoder, map, infowindow, marker) {
+					var latlng = {lat:marker.getPosition().lat(), lng: marker.getPosition().lng()};
+					var com = "";
+					geocoder.geocode({'location': latlng}, function(results, status) {
+						if (status === 'OK') {
+							
+							for(var i = 0; i < results.length; i++){
+								//console.log(results.length);
+								//console.log(results[i].formatted_address);
+								/*
+								if (results[i].address_components.length == 5)
+								var text = results[i].address_components[0].long_name; ;
+								if( text.match("[0-9]+") && text.length== 5 ){
+									document.getElementById('Municipi').value = codipostal_comarca.get(zipcode).municipi;
+								}
+								else{
+									document.getElementById('Municipi').value = text;
+								}*/
+							}
+							if (results[0]) {
+								var zipcode = getzipcode(results);
+								if(zipcode == ""){
+									
+								}
+								try{
+									console.log("zip: "+zipcode);
+									com = codipostal_comarca.get(zipcode).comarca;
+									console.log(zipcode + " : " + com );
+								}
+								catch(e){
+									console.log("cp: "+zipcode+ "\n+err: "+ e);
+								}
+							  infowindow.setContent(results[0].formatted_address );
+							  infowindow.open(map, marker);
+
+
+							} else {
+							  window.alert('No results found');
+							}
+						} else {
+						window.alert('Geocoder failed due to: ' + status);
+						}
+					});
+					return com;
+				}
+
+				function geocodeAddress(geocoder, resultsMap) {
+					var address = document.getElementById('address').value;
+					geocoder.geocode({'address': address}, function(results, status) {
+						if (status === 'OK') {
+							resultsMap.setCenter(results[0].geometry.location);
+							var marker = new google.maps.Marker({
+							  map: resultsMap,
+							  position: results[0].geometry.location
+							});
+						} else {
+						alert('Geocode was not successful for the following reason: ' + status);
+						}
+					});
+				}
 
 /*				VARIABLES 				*/
 
@@ -946,12 +1005,17 @@ function initMap() {
 					
 					console.log(marker.getPosition().lat());
 					console.log(marker.getPosition().lng());
+					document.getElementById('Latitud').value = (marker.getPosition().lat());
+					document.getElementById('Longitud').value =(marker.getPosition().lng());
 					var com = geocodeLatLng(geocoder, map, infoWindow, marker);
 
 					if(ajuntamentsDescarregats){
 
 						var pob = closestAjuntament(maplatlongs, marker, ajuntaments);	//	ajuntament més proper
-						if(com == "") com = pob.comarca;								//	nom de la comarca en la que pertany
+						if(com == ""){
+							com = pob.comarca;								//	nom de la comarca en la que pertany
+							console.log("no hi havia comarca");
+						}
 						else{
 							com = maptraductor.get(com);
 						}
@@ -1011,7 +1075,6 @@ function initMap() {
 						}
 					}
 
-				
 			});			
 		}
 		catch(err){

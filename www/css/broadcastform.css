@@ -55,17 +55,12 @@ h1{
 
 #map_form{
   position: absolute;
-	height: 100%;
-  width:100%;
-  border-radius: 10px;
-}
-
-iframe{
-  display: none;
-  position: absolute;
   height: 100%;
   width:100%;
   border-radius: 10px;
+  
+  /**/
+  display:none;
 }
 
 
@@ -78,27 +73,33 @@ iframe{
 }
 
 form{
-  display: none;
+  display: block;
 }
 form#gform.formulari{
-  display: none;
+  display: block;
 }
 
 input{
   width:100%;
 }
 
+.embolcall-info{
+  height: calc(100vh*0.9);
+  overflow: scroll;
+}
+
 #llistat{
   display: none;
   min-width: 100%;
   overflow: scroll;
-  height: calc(100vh*0.9);;
+  height: calc(100vh*0.9);
   grid-template-columns: 1fr 1fr;
 
 }
 
 #noms{
   min-width:50%;
+  white-space:nowrap;
 }
 #valors{
   min-width:50%;
