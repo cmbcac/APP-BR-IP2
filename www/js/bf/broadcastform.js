@@ -34,10 +34,13 @@ class Comarca{
 
 /*			FUNCIONS			*/
 
+
+/*	Formularis GOOOGLE*/
 function embeddFormulari(comarca, id){
 	var index = dict_comarques.get(comarca);
 	comarques[index].iframe = id;
 }
+
 function ompleEmbedsComarques(){
 	embeddFormulari("altcamp", 'https://docs.google.com/forms/d/e/1FAIpQLSc3yEI2iKxuAVZID2alYLr_nQkd5HDOtLYd5uiMkMeDcVKhbg/viewform?embedded=true');
 	embeddFormulari("altemporda", 'https://docs.google.com/forms/d/e/1FAIpQLSciitIA3SJ1Hav3Eu5MjNd6cekmbHXKtElZlU6L2xbtsc8klA/viewform?embedded=true');
@@ -82,6 +85,9 @@ function ompleEmbedsComarques(){
 	embeddFormulari("vallesoriental", 'https://docs.google.com/forms/d/e/1FAIpQLSfR3aZvf39-AK7lO07XBp-nc-DVsCg4zuc10dWH1P0caJkAgQ/viewform?embedded=true');	
 }
 
+
+/* Botons Formulari*/
+
 function afegeixBotonsCobertures(n, i){
 	/*
 	n: nom de la emissora
@@ -112,15 +118,19 @@ function afegeixBotonsCobertures(n, i){
 	
 }
 
+/* Càrrega informació aportada pels ajuntaments ---- to remove */
+
 function setValorInProgress(){
 	return 42;
 }
 
 
+/* AJUNTAMENTS PROPERS*/
 
+/* maplatlongs: obtenir la lat i long de cada ajt/resposta del formulari obtinguda*/
+/* marker: */
 function nomClosestAjuntament(maplatlongs, marker, ajuntaments){
-		/* maplatlongs: obtenir la lat i long de cada ajt/resposta del formulari obtinguda*/
-	/* marker: */
+	
 	var dist = 1000;
 	var nom = "";
 	var it = maplatlongs.entries()
@@ -167,9 +177,7 @@ function closestAjuntament(maplatlongs, marker, ajuntaments){
 	return ajt;
 }
 
-
-
-
+/* ASSOCIACIO NOM INDEX*/
 
 function ompleDiccionariComarques(){
 	dict_comarques.set("altaribagorca",0);
@@ -215,6 +223,8 @@ function ompleDiccionariComarques(){
 	dict_comarques.set("vallesoriental",40);
 	dict_comarques.set("usuaris",41);
 }
+
+/*	PARSE DATA TO JSONText*/
 
 //treiem els primers caracters i ultims per poder parsejar
 //fem el parsing i ho retornem
@@ -265,6 +275,11 @@ function associaCPComarques(data){
 	
 	
 }
+
+/*OBTE ELS CANALS DE LES COMARQUES */
+// de cada entry es mira si pertany a la comarca
+// si pertany es fa el pushs a entries (es un index)
+// 
 
 function omple_canalscomarca(data){
 	var data = returnDataParsed(data);
@@ -799,6 +814,8 @@ function obtenEntrys(ajuntaments, ajt, entry, canalscomarca){
 
 // un cop carregada la pagina prepara què fer quan facin click sobre el pin i la senyal de cobertura
 
+var textTitol;
+
 function load(){
 	
 	
@@ -819,6 +836,14 @@ function load(){
 			if($("#llistat").css("display") == "block"){
 				$("#llistat").css("display","grid");
 
+			}
+			if($("#llistat").css("display") == "none"){
+				//$("#titol-principal")[0].innerText = textTitol;
+			}
+	
+			else{
+				textTitol = $("#titol-principal")[0].innerText;
+				$("#titol-principal")[0].innerText = "Llistat emissores";
 			}
 			$('.el').css('height', $('.nel').innerHeight());
 		}
@@ -896,6 +921,7 @@ function insertaiframe(iframe){
 										}
 										if(c2 != undefined) com = c2.comarca;
 										console.log("com found: " + com);
+										$("#titol-principal")[0].innerText = "Registre cobertura al : " + com;
 										llistat(com);
 										break;
 									}
@@ -991,7 +1017,7 @@ var bar = new ProgressBar.Line(progressbar, {
 });
 
 var rln = "";
-
+textTitol = $("#titol-principal")[0].innerText;
 window.onload = load;
 executaAJAX3(id_cpcomarques, associaCPComarques, "");
 
@@ -1023,8 +1049,26 @@ function llistat(com){
 
 		try{
 			$("[class*=example-class]").hover(function(){
-				var c = this.className.match(/(\d+)-example-class/)[1];		//in hover
-				$('#'+c).css('background-color', '#fcf4eb');
+				var c = this.className.match(/(\d+)-example-class/)[1];//in hover
+				var val = this.value;
+				var ss = "#86BBD8"
+				var sd = "#F26419";
+				var sr = "#F6AE2D";
+				var sb = "#AEE062";
+				var col;
+				if(val == "Regular")
+					col = sr;
+				else if(val == "Dolenta")
+					col = sd;
+				else if(val == "Bona")
+					col = sb;
+				else if(val == "Sense Senyal")
+					col = ss;
+				else{
+					col = "#fcf4eb"
+				}
+
+				$('#'+c).css('background-color', col);
 			}, function(){
 				var c = this.className.match(/(\d+)-example-class/)[1];		//out hover
 				$('#'+c).css('background-color', '#ffffff');
@@ -1078,7 +1122,7 @@ function initMap() {
 					(function(marker){ google.maps.event.addListener(marker, 'click', 
 						function(e){
 							marker.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");
-							setTimeout(togglemapform, 500);
+							//setTimeout(togglemapform, 500);
 						})
 					})(marker);
 

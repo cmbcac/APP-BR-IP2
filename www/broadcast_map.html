@@ -10,7 +10,7 @@
 
 	<link rel = "stylesheet" href = "css/menu-desplegable.css">
 	<link rel = "stylesheet" href = "css/broadcastmap.css">
-
+	<link rel = "stylesheet" href = "css/buttons.css">
 	<!-- fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet">
 	
@@ -67,7 +67,7 @@
 						</div>
 				</div>
 			</div>
-			<div id = "pinmap" class="pin icon"></div>
+			<div id = "pinmap" class="signal icon"></div>
 			<div id = "progressbar" style = "height: 12px"></div>
 		</div>
 	</div>
@@ -97,6 +97,11 @@
 			$(this)
 				.toggleClass('arrow-right')
 			    .toggleClass('arrow-left');
+			})	
+		$('.signal').click(function(){
+			$(this)
+				.toggleClass('signal')
+			    .toggleClass('map');
 			})	
 	</script>
 

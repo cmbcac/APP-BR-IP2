@@ -15,6 +15,7 @@
 
 	<link rel = "stylesheet" href = "css/menu-desplegable.css">
 	<link rel = "stylesheet" href = "css/ottmap.css">
+	<link rel = "stylesheet" href = "css/buttons.css">
 
 	<!-- fonts -->
 
@@ -64,7 +65,7 @@
 						</div>
 				</div>
 			</div>
-			<div id = "pinmap" class="pin icon"></div>
+			<div id = "pinmap" class="tv icon"></div>
 		</div>
 	</div>
 	
@@ -84,6 +85,11 @@
 			$(this)
 				.toggleClass('arrow-right')
 			    .toggleClass('arrow-left');
+			})
+		$('.tv').click(function(){
+			$(this)
+				.toggleClass('tv')
+			    .toggleClass('map');
 			})	
 	</script>
 	
