@@ -28,6 +28,7 @@ class Comarca{
 		this.idget = "";
 		this.linkpost = link;
 		this.iframe = "";
+		this.municipis = [];
 	}
 }
 
@@ -238,6 +239,17 @@ function ompleArrayCanals(data){
 	}
 }
 
+function comparastring(value, key, map) {
+	if(rln.includes(key)){
+		c1 = value;
+	}
+}
+
+function omplemunicipis(value, key, map) {
+	Municipis.push(new Detall(value.municipi, value.comarca));
+	revMap.set(value.municipi.split(',')[0], value.comarca);
+}
+
 function associaCPComarques(data){
 	var data = returnDataParsed(data);
 	for(var i = 0 ; i < data.feed.entry.length; i++){
@@ -249,6 +261,9 @@ function associaCPComarques(data){
 		codipostal_comarca.set(nom, cp);
 	}
 
+	codipostal_comarca.forEach(omplemunicipis);
+	
+	
 }
 
 function omple_canalscomarca(data){
@@ -549,7 +564,7 @@ function ompletraductor(){
 	maptraductor.set("Barcelonès","barcelones");
 	maptraductor.set("Berguedà","bergueda");
 	maptraductor.set("Cerdanya","cerdanya");
-	maptraductor.set("Conca de Barbera","concadebarbera");
+	maptraductor.set("Conca de Barberà","concadebarbera");
 	maptraductor.set("Garraf","garraf");
 	maptraductor.set("Garrigues","garrigues");
 	maptraductor.set("Garrotxa","garrotxa");
@@ -572,8 +587,8 @@ function ompletraductor(){
 	maptraductor.set("Tarragonès","tarragones");
 	maptraductor.set("Terra Alta","terraalta");
 	maptraductor.set("Urgell","urgell");
-	maptraductor.set("Valles Occidental","vallesoccidental");
-	maptraductor.set("Valles Oriental","vallesoriental");
+	maptraductor.set("Vallès Occidental","vallesoccidental");
+	maptraductor.set("Vallès Oriental","vallesoriental");
 }
 
 //es posa la url segons la id, es diu que es vol obtenir
@@ -816,7 +831,8 @@ function load(){
 						icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
 					});
 					geocodeLatLng(geocoder, map, infoWindow, marker);
-					infowindow.open();
+					document.getElementById('Latitud').value = (marker.getPosition().lat());
+					document.getElementById('Longitud').value =(marker.getPosition().lng());
 			});
 		}
 
@@ -858,31 +874,31 @@ function insertaiframe(iframe){
 					geocoder.geocode({'location': latlng}, function(results, status) {
 						if (status === 'OK') {
 							
-							for(var i = 0; i < results.length; i++){
-								//console.log(results.length);
-								//console.log(results[i].formatted_address);
-								/*
-								if (results[i].address_components.length == 5)
-								var text = results[i].address_components[0].long_name; ;
-								if( text.match("[0-9]+") && text.length== 5 ){
-									document.getElementById('Municipi').value = codipostal_comarca.get(zipcode).municipi;
-								}
-								else{
-									document.getElementById('Municipi').value = text;
-								}*/
-							}
 							if (results[0]) {
-								var zipcode = getzipcode(results);
-								if(zipcode == ""){
-									
-								}
-								try{
-									console.log("zip: "+zipcode);
-									com = codipostal_comarca.get(zipcode).comarca;
-									console.log(zipcode + " : " + com );
-								}
-								catch(e){
-									console.log("cp: "+zipcode+ "\n+err: "+ e);
+								var c1 = ""; 
+								var c2 = ""; 
+								var l = results[0].address_components.length;
+								var r0 = results[0].address_components;
+								for(var i = 0; i < l  ; i++){
+									rln = r0[i].long_name;
+									c1 = revMap.get(rln);
+									c2 = codipostal_comarca.get(rln);
+									if(c1 == undefined){
+										revMap.forEach(comparastring);
+										console.log("foreach");
+									}
+									if(c1 != undefined || c2 != undefined){
+										
+										if(c1 != undefined){
+											com = c1;
+											document.getElementById('Municipi').value = rln;
+										
+										}
+										if(c2 != undefined) com = c2.comarca;
+										console.log("com found: " + com);
+										llistat(com);
+										break;
+									}
 								}
 							  infowindow.setContent(results[0].formatted_address );
 							  infowindow.open(map, marker);
@@ -895,7 +911,6 @@ function insertaiframe(iframe){
 						window.alert('Geocoder failed due to: ' + status);
 						}
 					});
-					return com;
 				}
 
 				function geocodeAddress(geocoder, resultsMap) {
@@ -958,6 +973,8 @@ var inProgress;					// quantes peticions ajax s'han de fer (de cada document, n'
 inProgress = setValorInProgress();
 
 var ajuntament;
+var Municipis = [];
+var revMap = new Map();
 
 var dict_comarques = new Map();	//hi guarda de cada comarca l'index. 
 ompleDiccionariComarques();
@@ -973,10 +990,57 @@ var bar = new ProgressBar.Line(progressbar, {
   svgStyle: {width: '100%', height: '100%'}
 });
 
-
+var rln = "";
 
 window.onload = load;
 executaAJAX3(id_cpcomarques, associaCPComarques, "");
+
+function llistat(com){
+	com = maptraductor.get(com);
+	var icom = dict_comarques.get(com);								// 	index de la comarca
+	var numdet = comarques[icom].canals.length;						// 	quants detalls te
+
+	// LLISTAT DE BOTONS DE COBERTURES
+	
+	$('#gform').attr('action', 'https://script.google.com/macros/s/'+comarques[icom].linkpost+'/exec');
+	
+	$('ul#list1').children().remove();
+	$('ul#list2').children().remove();
+	
+	for(var i = 0; i < numdet; i++){
+		var n ;
+		if(comarques[icom].canals[i] != undefined){
+			n = comarques[icom].canals[i].titol;							//nom de cada detall/canal/emissora que te
+		}
+		else{
+			break;
+		}
+		
+		afegeixBotonsCobertures(n,i);
+		
+		
+		$('.el').css('height', $('.nel').innerHeight());				//tamany de la caixa
+
+		try{
+			$("[class*=example-class]").hover(function(){
+				var c = this.className.match(/(\d+)-example-class/)[1];		//in hover
+				$('#'+c).css('background-color', '#fcf4eb');
+			}, function(){
+				var c = this.className.match(/(\d+)-example-class/)[1];		//out hover
+				$('#'+c).css('background-color', '#ffffff');
+			});
+		}
+		catch(e){
+			alert(e);
+		}
+		
+		$('.el').on('click', function(event){
+			event.stopImmediatePropagation();
+			var c = this.className.match(/(\d+)-example-class/)[1];
+		});
+	}
+	
+}
 
 function initMap() {
 		todo = !todo;
@@ -1007,73 +1071,16 @@ function initMap() {
 					console.log(marker.getPosition().lng());
 					document.getElementById('Latitud').value = (marker.getPosition().lat());
 					document.getElementById('Longitud').value =(marker.getPosition().lng());
-					var com = geocodeLatLng(geocoder, map, infoWindow, marker);
+					geocodeLatLng(geocoder, map, infoWindow, marker);
 
-					if(ajuntamentsDescarregats){
+					// LISTENER DEL MAPA
 
-						var pob = closestAjuntament(maplatlongs, marker, ajuntaments);	//	ajuntament més proper
-						if(com == ""){
-							com = pob.comarca;								//	nom de la comarca en la que pertany
-							console.log("no hi havia comarca");
-						}
-						else{
-							com = maptraductor.get(com);
-						}
-						var icom = dict_comarques.get(com);								// 	index de la comarca
-						var numdet = comarques[icom].canals.length;						// 	quants detalls te
-
-						infoWindow.open(map,marker);						
-						
-						// LISTENER DEL MAPA
-
-						(function(marker){ google.maps.event.addListener(marker, 'click', 
-							function(e){
-								marker.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");
-								setTimeout(togglemapform, 500);
-							})
-						})(marker);
-
-						// LLISTAT DE BOTONS DE COBERTURES
-						
-						$('#gform').attr('action', 'https://script.google.com/macros/s/'+comarques[icom].linkpost+'/exec');
-						
-						$('ul#list1').children().remove();
-						$('ul#list2').children().remove();
-						
-						for(var i = 0; i < numdet; i++){
-							var n ;
-							if(comarques[icom].canals[i] != undefined){
-								n = comarques[icom].canals[i].titol;							//nom de cada detall/canal/emissora que te
-							}
-							else{
-								break;
-							}
-							
-							afegeixBotonsCobertures(n,i);
-							
-							
-							$('.el').css('height', $('.nel').innerHeight());				//tamany de la caixa
-	
-							try{
-								$("[class*=example-class]").hover(function(){
-									var c = this.className.match(/(\d+)-example-class/)[1];		//in hover
-									$('#'+c).css('background-color', '#fcf4eb');
-								}, function(){
-									var c = this.className.match(/(\d+)-example-class/)[1];		//out hover
-									$('#'+c).css('background-color', '#ffffff');
-								});
-							}
-							catch(e){
-								alert(e);
-							}
-							
-							$('.el').on('click', function(event){
-								event.stopImmediatePropagation();
-								var c = this.className.match(/(\d+)-example-class/)[1];
-							});
-
-						}
-					}
+					(function(marker){ google.maps.event.addListener(marker, 'click', 
+						function(e){
+							marker.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");
+							setTimeout(togglemapform, 500);
+						})
+					})(marker);
 
 			});			
 		}

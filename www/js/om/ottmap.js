@@ -98,89 +98,6 @@ class Poble{
 	setTitol(titol){
 		this.titol=titol;
 	}
-	getRadiosHTML(){
-		var ready = true;
-		var filterend = "TELEVISIÓ NACIONAL";
-		var s="";
-		for(var i = 0;  i <this.descripcio.length; i++){
-			s = s 
-			var t = this.descripcio[i].getTitol();
-			if(t == filterend) ready = false;
-			if(ready){
-				var c = this.descripcio[i].getContingut();
-				if (c != "" && c != undefined){
-					s = s + t + ": " + c;
-				}
-				else{
-					if ( c == undefined){
-						s = s + t;
-					}
-					if (c == ""){
-						s = s + t;
-					}
-				}
-				s = s+ "\n"
-			}
-
-		}
-		return s
-	}
-	getTVSHTML(){
-		var ready = false;
-		var filter = "TELEVISIÓ NACIONAL";
-		var filterend = "ALTRES FORMES DE COMUNICACIÓ 1";
-		var s="";
-		for(var i = 0;  i <this.descripcio.length; i++){
-			s = s ;
-			var t = this.descripcio[i].getTitol();
-			if(t == filter) ready = true;
-			if(t == filterend) ready = false;
-			if(ready){
-				var c = this.descripcio[i].getContingut();
-				if (c != "" && c != undefined){
-					s = s + t + ": " + c;
-				}
-				else{
-					if ( c == undefined){
-						s = s +  t ;
-					}
-					if (c == ""){
-						s = s + t;
-					}
-				}
-				s = s+ "\n"
-			}
-
-		}
-		return s;
-	}
-	getOthersHTML(){
-		var ready = false;
-		var filter = "ALTRES FORMES DE COMUNICACIÓ 1"
-		var s="";
-		for(var i = 0;  i <this.descripcio.length; i++){
-			s = s; 
-			var t = this.descripcio[i].getTitol();
-			if(t == filter) ready = true;
-			if(ready){
-				var c = this.descripcio[i].getContingut();
-				if (c != "" && c != undefined){
-					s = s + t + ": " + c;
-				}
-				else{
-					if ( c == undefined){
-						s = s +  t ;
-					}
-					if (c == ""){
-						s = s + t;
-					}
-				}
-				s = s+ "\n";
-	
-			}
-		}
-		return s;
-	}
 	
 	getMapDetalls(){
 		var s = new Map();
@@ -352,8 +269,7 @@ function controlaInformacio(data,nom){
 		//infowindows
 		(function(marker, poble){
 			google.maps.event.addListener(marker, 'click', function(e){
-				infoWindow.setContent(poble.poble);// + "  "+poble.descripcio[0].titol + " ");
-				//infoWindow.setContent("<strong>" + poble.poble+ "</strong><br>" + poble.setContent());
+				infoWindow.setContent(poble.poble);
 				infoWindow.open(map,marker);
 				
 				var radtitols = [];
@@ -386,7 +302,9 @@ function controlaInformacio(data,nom){
 					if("ALTRES FORMES DE COMUNICACIÓ 1" == t) end = true;
 					if(bg){
 						$('ul#list1').append('<li>'+t+'</li>');
-						
+						if(c.includes("http")){
+							c = '<a href="'+c+'">'+c;
+						}
 						$('ul#list2').append('<li>'+c+'</li>');
 						
 					}
