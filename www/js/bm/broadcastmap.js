@@ -1049,6 +1049,8 @@ var typemap = "";
 var styledMapType;
 var styledMapType2;
 
+var colorprevi = "red";
+
 var inProgress;
 
 inProgress = setValorInProgress();
@@ -1191,19 +1193,35 @@ function controlaInformacio(data,nom){
 					var t = n.value;
 					var c = mapdet.get(t);
 					if(c=="") c = "sense informació";
-					if(c==undefined) c = "--";
-					
+					if(c==undefined) c = "--";					
 					if("TELEVISIÓ NACIONAL"  == t) bg = false; 
 					if("ALTRES FORMES DE COMUNICACIÓ 1" == t) end = true;
 					if(bg){
-						$('ul#list1').append('<li>'+t+'</li>');
-						
-						$('ul#list2').append('<li>'+c+'</li>');
-						
+
+						if(c=="--"){
+							t = '<li class ="blanc">' + t + '</li>'
+							c = '<li class ="blanc">' + c + '</li>'
+
+							$('ul#list1').append(t);
+							$('ul#list2').append(c);
+						}
+						else{
+							$('ul#list1').append('<li>'+t+'</li>');
+							$('ul#list2').append('<li>'+c+'</li>');
+						}
 					}
 					if(!bg && !end){
-						$('ul#list3').append('<li>'+t+'</li>');
-						$('ul#list4').append('<li>'+c+'</li>');
+						if(c=="--"){
+							t = '<li class ="blanc">' + t + '</li>'
+							c = '<li class ="blanc">' + c + '</li>'
+
+							$('ul#list3').append(t);
+							$('ul#list4').append(c);
+						}
+						else{
+							$('ul#list3').append('<li>'+t+'</li>');
+							$('ul#list4').append('<li>'+c+'</li>');
+						}
 
 					}
 					if(end){
@@ -1217,7 +1235,11 @@ function controlaInformacio(data,nom){
 				else{
 					for(var i = 0; i < array.length; i++){
 						if (array[i].getIcon() == 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'){
-							array[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+							if(array[i].title.includes("Ajuntament"))
+								array[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+							else{
+								array[i].setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+							}
 						}
 					}
 					marker.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");	
@@ -1282,10 +1304,15 @@ function getLatLang(entry){
 //retorna el marker	
 function setMarker(comarca, myLatLng, entry, map, array){
 	if(comarca !="usuaris" && comarca != ""){
+		var igroc = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
+		var ired = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+		var mun = entry['gsx$indiqueuelmunicipidesdonompliuelformulari'].$t;
+		var ic = mun.includes("Ajuntament") ? ired : igroc;
+
 		var marker = new google.maps.Marker({
 			position: myLatLng,
-			title: entry['gsx$indiqueuelmunicipidesdonompliuelformulari'].$t,
-			icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+			title: mun,
+			icon: ic,
 			map: map
 		});
 	}

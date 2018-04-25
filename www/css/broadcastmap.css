@@ -87,6 +87,11 @@ ul{
 	grid-template-columns: 1fr;
 }
 
+li.blanc{
+  background-color: white;
+  color:#FF6B6B;
+}
+
 #progressbar {
   margin: 0px;
   width: 100%;

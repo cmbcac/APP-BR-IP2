@@ -828,22 +828,34 @@ function load(){
 		$(".formulari").slideToggle();
 	});
 	
-	
+	// quan fas click al símbol de cobertura 
 	$("#sigico").click(function(){
+
+		//si esta a l'icona de senyal
 		if($("#sigico").attr("Class") == "icon signal"){
+
+			//si has fet senyala click i el llistat es veu, vol dir que canvies cap a no veure i per tan col·loques el nom de nou
+			if($("#llistat").css("display") == "grid"){
+				$("#titol-principal")[0].innerText = textTitol;
+			}
+			else{
+
+			// si no està configurat encara com a grid vol dir que està com a block? 
+				textTitol = $("#titol-principal")[0].innerText;
+				$("#titol-principal")[0].innerText = "Llistat emissores";
+			}
+
+
+			// fés el Toggle entre pestanyes.
 			$(".embolcall-info").slideToggle();	
 			$("#llistat").slideToggle();
+
+
+
+			// si està com a block, posa el display a grid
 			if($("#llistat").css("display") == "block"){
 				$("#llistat").css("display","grid");
 
-			}
-			if($("#llistat").css("display") == "none"){
-				//$("#titol-principal")[0].innerText = textTitol;
-			}
-	
-			else{
-				textTitol = $("#titol-principal")[0].innerText;
-				$("#titol-principal")[0].innerText = "Llistat emissores";
 			}
 			$('.el').css('height', $('.nel').innerHeight());
 		}
