@@ -80,6 +80,19 @@ ul{
 	top: 23px;
 }
 
+#gform{
+  min-width: 0;
+  width: calc(100vw * 0.6);
+  display: none;
+  position: absolute;
+  background-color:#fff7f2;
+  left: calc(100vw * 0.15);
+  overflow: scroll;
+  top: 50%;
+  border-radius: 10px;
+  transform: translateY(-50%);
+}
+
 .pin.icon {
   color: #000;
   position: absolute;
