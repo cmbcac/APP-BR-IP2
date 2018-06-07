@@ -279,45 +279,66 @@ function controlaInformacio(data,nom){
 				infoWindow.setContent(content);
 				infoWindow.open(map,marker);
 
+				// omplir les dades del formulari de comentaris
+
+				document.getElementById('Latitud').value = (marker.position.lat());
+				document.getElementById('Longitud').value = (marker.position.lng());
+				document.getElementById('Municipi').value = (poble.poble);
+
+				// click a la infoWindow
+
 				$('#contentInsideMap').bind('click', function() {
 					togglemapform();
 				});
-				
+
+
+				/*
 				var radtitols = [];
 				var radcontinguts = [];
 				var tvtitols = [];
 				var tvcontinguts = [];
 				var othtitols = [];
 				var othcontinguts = [];
-				
+				*/
+
+
+
+
 				var bg = true;
 				var end = false;
 				var mapdet = poble.getMapDetalls();
 				var it = mapdet.keys();
+
+				
+				
 				$('ul#list1').children().remove();
+				/*
 				$('ul#list2').children().remove();
 				$('ul#list3').children().remove();
 				$('ul#list4').children().remove();
 				$('ul#list5').children().remove();
-				
+				*/
 				
 				for(var i = 0;  i < mapdet.size; i++){
 					var n = it.next();
 					var t = n.value;
 					var c = mapdet.get(t);
+					
 					if(c=="") c = "sense informació";
 					if(c==undefined) c = "--";
-					
+					/*
 					if("TELEVISIÓ NACIONAL"  == t) bg = false; 
-					if("ALTRES FORMES DE COMUNICACIÓ 1" == t) end = true;
+					if("ALTRES FORMES DE COMUNICACIÓ 1" == t) end = true;*/
 					if(bg){
-						$('ul#list1').append('<li>'+t+'</li>');
+						$('ul#list1').append('<li class = "top">'+t+'</li>');
 						if(c.includes("http") || c.includes("www")){
-							c = '<a href="'+c+'">'+c;
+							c = '<a class="url" href="'+c+'">'+c;
 						}
-						$('ul#list2').append('<li>'+c+'</li>');
+						$('ul#list1').append('<li>'+c+'</li>');
+						//$('ul#list2').append('<li>'+c+'</li>');
 						
 					}
+					/*
 					if(!bg && !end){
 						$('ul#list3').append('<li>'+t+'</li>');
 						$('ul#list4').append('<li>'+c+'</li>');
@@ -325,8 +346,7 @@ function controlaInformacio(data,nom){
 					}
 					if(end){
 						$('ul#list5').append('<li>'+t+":\t"+c +'</li>');
-						//$('ul#list6').append('<li>'+c+'</li>');
-					}
+					}*/
 				}
 				if(marker.getIcon().url == "img/logo-IPTV2.png"){
 					togglemapform();

@@ -28,10 +28,12 @@ li{
 
 
 #pinmap{
-  top: 30px;
+  top: calc(100vh*0.8);
+  left: calc(100vw*0.25);
 }
 #sigico{
-  top: 60px;
+  top: calc(100vh*0.8);
+  left: calc(100vw*0.75);
 }
 
 
@@ -300,8 +302,8 @@ li{
 }
 
 #comico{
-  left:calc(100vw*0.48);
-  bottom:calc(100vh*0.08);
+  left:calc(100vw*0.75);
+  top:calc(100vh*0.8);
 }
 
 .icon, .icon:before, .icon:after, .icon i, .icon i:before, .icon i:after { 
