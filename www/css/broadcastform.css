@@ -13,8 +13,8 @@ html{
 
 body{
 	overflow-y: hidden;
-  overflow-x: hidden;
-  position: fixed;
+	overflow-x: hidden;
+	position: fixed;
 	font-family: 'Scope One', serif;
 
 }
@@ -45,7 +45,7 @@ h1{
 .gran{
   display: block;
   width: calc(100vw*0.9);
-  height: calc(100vh*0.7);
+  height: calc(80vh);
   left: calc(100vw*0.06);
   position: absolute;
   top: calc(100vh*0.05);
@@ -94,7 +94,7 @@ input{
 }
 
 .embolcall-info{
-  height: calc(100vh*0.7);
+  height: calc(80vh);
   overflow: scroll;
 }
 
@@ -126,11 +126,12 @@ input{
 #ll1{
   top:calc(100vh*0.75);
 }
+/*
 .infico{
   position: absolute;
   top:calc(100vh*0.77);
   font-size: 0.7em;
-}
+}*/
 .info{
   position: absolute;
   top:calc(100vh*0.9);
