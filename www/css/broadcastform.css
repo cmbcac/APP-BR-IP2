@@ -2,7 +2,6 @@
 	margin: 0;
 	padding: 0;
 }
-
 ::-webkit-scrollbar{
 	display: none;
 }
@@ -150,7 +149,7 @@ input{
   left:calc(100vw*0.25 - 2em);
 }
 #textcomentari.infico{
-  left:calc(100vw*0.75 - 5.5em);
+  left:calc(100vw*0.75 - 2.5em);
 }
 
 
@@ -161,7 +160,7 @@ input{
 }
 @media screen and (max-width: 568px) and (min-width: 284px) {
 	#titol-principal{
-		font-size: 1.1em;
+		font-size: 0.9em;
 	}
 
 }

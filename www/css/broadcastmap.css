@@ -1,10 +1,9 @@
 *{
 	margin: 0;
-	padding: 0;
-	
+	padding: 0;	
 }
 ::-webkit-scrollbar { 
-    display: none; 
+  display: none; 
 }
 
 body{
@@ -171,12 +170,12 @@ li.blanc{
 }
 @media screen and (max-width: 852px) and (min-width: 568px) {
 	#titol-principal{
-		font-size: 1.0em;
+		font-size: 0.9em;
 	}
 }
 @media screen and (max-width: 1136px) and (min-width: 852px) {
 	#titol-principal{
-		font-size: 1.4em;
+		font-size: 1.2em;
 	}
 }
 
