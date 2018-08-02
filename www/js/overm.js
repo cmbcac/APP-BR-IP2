@@ -78,7 +78,7 @@ function canvia_finestra(f2){
 
   	document.addEventListener('keydown', (event) => {
   	  const keyName = event.key;
-  	  if(keyName == '1'){
+  	  /*if(keyName == '1'){
   			for(var i = 0;  i < marcadors.length; i++){
   				if(marcadors[i].icon.includes("yellow")){
   					marcadors[i].setVisible(!marcadors[i].visible);
@@ -101,10 +101,9 @@ function canvia_finestra(f2){
   				markerCluster.addMarkers(marcadors);
   			}
 
-  		}
+  		}*/
   		if(keyName == "Enter"){
-  			let titol = $("#tags")[0].value;
-  			if(titol != "") mostra_segons_titol(titol);
+
   		}
   	});
 }
@@ -257,7 +256,7 @@ function configura_dades_formulari_comentaris(poble, marker){
 
 	document.getElementById('Latitud').value = (marker.position.lat());
 	document.getElementById('Longitud').value = (marker.position.lng());
-	document.getElementById('Municipi').value = (poble.poble);
+	document.getElementById('Entitat').value = (poble.poble);
 	$("h4")[0].innerText = "Comentari  sobre: "+poble.poble;
 }
 
@@ -316,7 +315,6 @@ function omple_mapa_amb_data_de_comarca_nom(data){
 	}
 
 }
-
 
 function parseja_data(data){
 

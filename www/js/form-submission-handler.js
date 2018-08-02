@@ -58,12 +58,15 @@ function handleFormSubmit(event) {  // handles form submit withtout any jquery
         console.log( xhr.status, xhr.statusText )
         console.log(xhr.responseText);
         document.getElementById('gform').style.display = 'none'; // hide form
+        $(".ContenidorDots").css('display','none')
         if(xhr.status == 200){
           //success
           document.getElementById('thankyou_message').style.display = 'block';
         }
         else{
           //not success
+          document.getElementById('thankyou_message').innerText = "Hi ha hagut un error, torni-ho a intentar després";
+          document.getElementById('thankyou_message').style.display = 'block';
         }
 
         return;
