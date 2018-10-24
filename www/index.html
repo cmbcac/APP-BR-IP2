@@ -37,35 +37,57 @@
 </head>
 
 <body>
-
-	<a href = "broadm.html" style = "
+	<nav class="menu">
+	<input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
+	<label class="menu-open-button" onmouseover="hid()" for="menu-open">
+    <span class="hamburger hamburger-1"></span>
+    <span class="hamburger hamburger-2"></span>
+    <span class="hamburger hamburger-3"></span>
+	</label>
+		
+		<a href = "broadm.html" class="menu-item" style = "
 		background: url('img/radio-icon2.png');
-		background-size:calc(100vw * .125) calc(100vw * .125);
+		background-size:calc(8vw) calc(8vw);
 		position: absolute;
-		top: calc(100vh * 0.25 - 100vw*.0625);
-		left: calc(100vw * 0.5 - 100vw*.0625);
-		width: calc(100vw * .125);
-		height: calc(100vw* .125);
-		background-repeat: no-repeat; border-radius: 30px;"></a>
-
-	<a href = "overm.html" style = "
+		width: calc(8vw);
+		height: calc(8vw);
+		background-repeat: no-repeat;"onmouseover="show1()"></a>
+		
+		<a href = "overm.html" class="menu-item" style = "
 		background: url('img/Television-icon.png');
-		background-size:calc(100vw * .125) calc(100vw * .125);
+		background-size:calc(8vw) calc(8vw);
 		position: absolute;
-		top: calc(100vh * 0.75 - 100vw*.0625);
-		left: calc(100vw * 0.5 - 100vw*.0625);
-		width: calc(100vw * .125);
-		height: calc(100vw* .125);
-		background-repeat: no-repeat; border-radius: 30px;"></a>
-
-	<div style = "position: absolute;top:calc(30vh); left: calc(50vw - 3.1em); background:white; padding:3px; border-radius:5px;">Broadcasting</div>
-	<div style = "position: absolute;top:calc(80vh); left: calc(50vw - 3.1em); background:white; padding:3px; border-radius:5px">Over The Top</div>
-
+		width: calc(8vw);
+		height: calc(8vw);
+		background-repeat: no-repeat;"onmouseover="show2()"></a>
+			
+		<label id="showbr" style="font-size: 15px; display:none; width:20vw; top:70%; left:20%; transform: translateX(-50%); position:absolute;">Mapa de senyals i cobertura de ràdio a Catalunya</label>
+		<label id="showott" style="font-size: 15px; display:none; width:20vw; top:70%; left:80%; transform: translateX(-50%); position:absolute;">Mapa de senyals i cobertura de televisió a Catalunya</label>
+	</nav>
+		
+		
+	
+	
 
 	<!--  other -->
-
+	<script>
+	 function show1(){
+		 document.getElementById('showbr').style.display = 'inline';
+		 
+		 document.getElementById('showott').style.display = 'none';
+	 }
+	 function show2(){
+		document.getElementById('showbr').style.display = 'none';
+		
+		document.getElementById('showott').style.display = 'inline';
+	 }
+	 function hid(){
+		document.getElementById('showott').style.display = 'none';
+		document.getElementById('showbr').style.display = 'none';
+	 }
+	</script>
   <script type="text/javascript" src="cordova.js"></script>
-
+	
 
 
 

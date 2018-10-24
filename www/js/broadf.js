@@ -614,10 +614,6 @@ function executaPeticio(id, todo, params){
     xmlhttp.send();
 }
 
-function handleBefore(){
-
-}
-
 function handleComplete(params){
 	if(params.nom.includes("bbdd")){
 		urls_bbdd --;

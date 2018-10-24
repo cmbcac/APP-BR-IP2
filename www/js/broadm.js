@@ -128,39 +128,6 @@ function canvia_finestra(f2){
     $(finestres[f])[0].className = show;
     $('.el').css('height', $('.nel').innerHeight());				//tamany de la caixa
   }
-
-
-  	document.addEventListener('keydown', (event) => {
-  	  const keyName = event.key;
-  	  if(keyName == '1'){
-  			for(var i = 0;  i < marcadors.length; i++){
-  				if(marcadors[i].icon.includes("yellow")){
-  					marcadors[i].setVisible(!marcadors[i].visible);
-  				}
-  			}
-  		}
-  		if(keyName == '2'){
-  			for(var i = 0;  i < marcadors.length; i++){
-  				if(marcadors[i].icon.includes("red")){
-  					marcadors[i].setVisible(!marcadors[i].visible);
-  				}
-  			}
-  		}
-  		if(keyName == '3'){
-  			if(markerCluster.markers_.length != 0){
-  				markerCluster.clearMarkers();
-  				marcadors.forEach(element => element.setMap(map));
-  			}
-  			else{
-  				markerCluster.addMarkers(marcadors);
-  			}
-
-  		}
-  		if(keyName == "Enter"){
-  			let titol = $("#tags")[0].value;
-  			if(titol != "") mostra_segons_titol(titol);
-  		}
-  	});
 }
 
 function load(){
@@ -512,10 +479,6 @@ function executaPeticio(id, todo, params){
 
     xmlhttp.open("GET", "https://spreadsheets.google.com/feeds/list/"+id+"/1/public/values?alt=json-in-script&callback=callback", true);
     xmlhttp.send();
-}
-
-function handleBefore(){
-
 }
 
 function handleComplete(params){
