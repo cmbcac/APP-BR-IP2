@@ -6,7 +6,7 @@ html,body {/*  */
   min-width:320px;
   min-height:568px;
   font-family: 'Scope One', serif;
-
+	z-index: 0;
 }
 .menu {
   -webkit-filter: url("#shadowed-goo");
@@ -141,7 +141,6 @@ html,body {/*  */
   -webkit-transform: translate3d(20vw, 0, 0);
           transform: translate3d(20vw, 0, 0);
 }
-
 
 
 
